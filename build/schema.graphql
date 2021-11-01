@@ -1,0 +1,4 @@
+type AttestationsCompleted @entity {
+  id: ID!
+  count: BigInt!
+}

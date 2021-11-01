@@ -5,10 +5,10 @@
     "clean": "rm -rf build",
     "codegen": "graph codegen",
     "build": "graph build",
-    "deploy": "graph deploy --node https://api.thegraph.com/deploy/ anudit/celosubgraph",
-    "create-local": "graph create --node http://localhost:8020/ anudit/celosubgraph",
-    "remove-local": "graph remove --node http://localhost:8020/ anudit/celosubgraph",
-    "deploy-local": "graph deploy --node http://localhost:8020/ --ipfs http://localhost:5001 anudit/celosubgraph"
+    "deploy": "graph deploy --product hosted-service anudit/celo-subgraph",
+    "create-local": "graph create --node http://localhost:8020/ anudit/celo-subgraph",
+    "remove-local": "graph remove --node http://localhost:8020/ anudit/celo-subgraph",
+    "deploy-local": "graph deploy --node http://localhost:8020/ --ipfs http://localhost:5001 anudit/celo-subgraph"
   },
   "dependencies": {
     "@graphprotocol/graph-cli": "0.23.0",

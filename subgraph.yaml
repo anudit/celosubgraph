@@ -1,0 +1,24 @@
+specVersion: 0.0.2
+schema:
+  file: ./schema.graphql
+dataSources:
+  - kind: ethereum/contract
+    name: Attestations
+    network: celo
+    source:
+      address: "0xdC553892cdeeeD9f575aa0FBA099e5847fd88D20"
+      startBlock: 4947317
+      abi: Attestations
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.5
+      language: wasm/assemblyscript
+      entities:
+        - AttestationCompleted
+      abis:
+        - name: Attestations
+          file: ./abis/Attestations.json
+      eventHandlers:
+        - event: AttestationCompleted(indexed bytes32,indexed address,indexed address)
+          handler: handleAttestationCompleted
+      file: ./src/mapping.ts
