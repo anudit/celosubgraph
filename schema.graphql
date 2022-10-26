@@ -1,4 +1,11 @@
-type AttestationsCompleted @entity {
+type Attestation @entity {
   id: ID!
-  count: BigInt!
+  identifier: Bytes!
+  issuer: Bytes!
+  account: Bytes!
+  signer: Bytes!
+  issuedOn: BigInt!
+  publishedOn: BigInt!
+  txnHash: Bytes!
+  isRevoked: Boolean!
 }

@@ -2,7 +2,6 @@
   "name": "celosubgraph",
   "license": "MIT",
   "scripts": {
-    "clean": "rm -rf build",
     "codegen": "graph codegen",
     "build": "graph build",
     "deploy": "graph deploy --product hosted-service anudit/celo-subgraph",
@@ -11,8 +10,8 @@
     "deploy-local": "graph deploy --node http://localhost:8020/ --ipfs http://localhost:5001 anudit/celo-subgraph"
   },
   "dependencies": {
-    "@graphprotocol/graph-cli": "0.23.0",
-    "@graphprotocol/graph-ts": "0.22.1"
+    "@graphprotocol/graph-cli": "0.35.0",
+    "@graphprotocol/graph-ts": "0.28.1"
   },
   "version": "0.0.1"
 }

@@ -11,34 +11,26 @@ import {
   BigDecimal
 } from "@graphprotocol/graph-ts";
 
-export class AttestationsCompleted extends Entity {
+export class Attestation extends Entity {
   constructor(id: string) {
     super();
     this.set("id", Value.fromString(id));
-
-    this.set("count", Value.fromBigInt(BigInt.zero()));
   }
 
   save(): void {
     let id = this.get("id");
-    assert(
-      id != null,
-      "Cannot save AttestationsCompleted entity without an ID"
-    );
+    assert(id != null, "Cannot save Attestation entity without an ID");
     if (id) {
       assert(
         id.kind == ValueKind.STRING,
-        "Cannot save AttestationsCompleted entity with non-string ID. " +
-          'Considering using .toHex() to convert the "id" to a string.'
+        `Entities of type Attestation must have an ID of type String but the id '${id.displayData()}' is of type ${id.displayKind()}`
       );
-      store.set("AttestationsCompleted", id.toString(), this);
+      store.set("Attestation", id.toString(), this);
     }
   }
 
-  static load(id: string): AttestationsCompleted | null {
-    return changetype<AttestationsCompleted | null>(
-      store.get("AttestationsCompleted", id)
-    );
+  static load(id: string): Attestation | null {
+    return changetype<Attestation | null>(store.get("Attestation", id));
   }
 
   get id(): string {
@@ -50,12 +42,75 @@ export class AttestationsCompleted extends Entity {
     this.set("id", Value.fromString(value));
   }
 
-  get count(): BigInt {
-    let value = this.get("count");
+  get identifier(): Bytes {
+    let value = this.get("identifier");
+    return value!.toBytes();
+  }
+
+  set identifier(value: Bytes) {
+    this.set("identifier", Value.fromBytes(value));
+  }
+
+  get issuer(): Bytes {
+    let value = this.get("issuer");
+    return value!.toBytes();
+  }
+
+  set issuer(value: Bytes) {
+    this.set("issuer", Value.fromBytes(value));
+  }
+
+  get account(): Bytes {
+    let value = this.get("account");
+    return value!.toBytes();
+  }
+
+  set account(value: Bytes) {
+    this.set("account", Value.fromBytes(value));
+  }
+
+  get signer(): Bytes {
+    let value = this.get("signer");
+    return value!.toBytes();
+  }
+
+  set signer(value: Bytes) {
+    this.set("signer", Value.fromBytes(value));
+  }
+
+  get issuedOn(): BigInt {
+    let value = this.get("issuedOn");
     return value!.toBigInt();
   }
 
-  set count(value: BigInt) {
-    this.set("count", Value.fromBigInt(value));
+  set issuedOn(value: BigInt) {
+    this.set("issuedOn", Value.fromBigInt(value));
+  }
+
+  get publishedOn(): BigInt {
+    let value = this.get("publishedOn");
+    return value!.toBigInt();
+  }
+
+  set publishedOn(value: BigInt) {
+    this.set("publishedOn", Value.fromBigInt(value));
+  }
+
+  get txnHash(): Bytes {
+    let value = this.get("txnHash");
+    return value!.toBytes();
+  }
+
+  set txnHash(value: Bytes) {
+    this.set("txnHash", Value.fromBytes(value));
+  }
+
+  get isRevoked(): boolean {
+    let value = this.get("isRevoked");
+    return value!.toBoolean();
+  }
+
+  set isRevoked(value: boolean) {
+    this.set("isRevoked", Value.fromBoolean(value));
   }
 }

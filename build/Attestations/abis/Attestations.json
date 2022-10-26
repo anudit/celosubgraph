@@ -13,56 +13,12 @@
   },
   {
     "type": "event",
-    "name": "AttestationCompleted",
+    "name": "AttestationRegistered",
     "inputs": [
       {
         "type": "bytes32",
         "name": "identifier",
         "internalType": "bytes32",
-        "indexed": true
-      },
-      {
-        "type": "address",
-        "name": "account",
-        "internalType": "address",
-        "indexed": true
-      },
-      {
-        "type": "address",
-        "name": "issuer",
-        "internalType": "address",
-        "indexed": true
-      }
-    ],
-    "anonymous": false
-  },
-  {
-    "type": "event",
-    "name": "AttestationExpiryBlocksSet",
-    "inputs": [
-      {
-        "type": "uint256",
-        "name": "value",
-        "internalType": "uint256",
-        "indexed": false
-      }
-    ],
-    "anonymous": false
-  },
-  {
-    "type": "event",
-    "name": "AttestationIssuerSelected",
-    "inputs": [
-      {
-        "type": "bytes32",
-        "name": "identifier",
-        "internalType": "bytes32",
-        "indexed": true
-      },
-      {
-        "type": "address",
-        "name": "account",
-        "internalType": "address",
         "indexed": true
       },
       {
@@ -73,27 +29,26 @@
       },
       {
         "type": "address",
-        "name": "attestationRequestFeeToken",
-        "internalType": "address",
-        "indexed": false
-      }
-    ],
-    "anonymous": false
-  },
-  {
-    "type": "event",
-    "name": "AttestationRequestFeeSet",
-    "inputs": [
-      {
-        "type": "address",
-        "name": "token",
+        "name": "account",
         "internalType": "address",
         "indexed": true
       },
       {
-        "type": "uint256",
-        "name": "value",
-        "internalType": "uint256",
+        "type": "address",
+        "name": "signer",
+        "internalType": "address",
+        "indexed": false
+      },
+      {
+        "type": "uint64",
+        "name": "issuedOn",
+        "internalType": "uint64",
+        "indexed": false
+      },
+      {
+        "type": "uint64",
+        "name": "publishedOn",
+        "internalType": "uint64",
         "indexed": false
       }
     ],
@@ -101,12 +56,18 @@
   },
   {
     "type": "event",
-    "name": "AttestationsRequested",
+    "name": "AttestationRevoked",
     "inputs": [
       {
         "type": "bytes32",
         "name": "identifier",
         "internalType": "bytes32",
+        "indexed": true
+      },
+      {
+        "type": "address",
+        "name": "issuer",
+        "internalType": "address",
         "indexed": true
       },
       {
@@ -116,15 +77,21 @@
         "indexed": true
       },
       {
-        "type": "uint256",
-        "name": "attestationsRequested",
-        "internalType": "uint256",
+        "type": "address",
+        "name": "signer",
+        "internalType": "address",
         "indexed": false
       },
       {
-        "type": "address",
-        "name": "attestationRequestFeeToken",
-        "internalType": "address",
+        "type": "uint64",
+        "name": "issuedOn",
+        "internalType": "uint64",
+        "indexed": false
+      },
+      {
+        "type": "uint64",
+        "name": "publishedOn",
+        "internalType": "uint64",
         "indexed": false
       }
     ],
@@ -132,37 +99,12 @@
   },
   {
     "type": "event",
-    "name": "AttestationsTransferred",
+    "name": "EIP712DomainSeparatorSet",
     "inputs": [
       {
         "type": "bytes32",
-        "name": "identifier",
+        "name": "eip712DomainSeparator",
         "internalType": "bytes32",
-        "indexed": true
-      },
-      {
-        "type": "address",
-        "name": "fromAccount",
-        "internalType": "address",
-        "indexed": true
-      },
-      {
-        "type": "address",
-        "name": "toAccount",
-        "internalType": "address",
-        "indexed": true
-      }
-    ],
-    "anonymous": false
-  },
-  {
-    "type": "event",
-    "name": "MaxAttestationsSet",
-    "inputs": [
-      {
-        "type": "uint256",
-        "name": "value",
-        "internalType": "uint256",
         "indexed": false
       }
     ],
@@ -188,140 +130,17 @@
     "anonymous": false
   },
   {
-    "type": "event",
-    "name": "RegistrySet",
-    "inputs": [
-      {
-        "type": "address",
-        "name": "registryAddress",
-        "internalType": "address",
-        "indexed": true
-      }
-    ],
-    "anonymous": false
-  },
-  {
-    "type": "event",
-    "name": "SelectIssuersWaitBlocksSet",
-    "inputs": [
-      {
-        "type": "uint256",
-        "name": "value",
-        "internalType": "uint256",
-        "indexed": false
-      }
-    ],
-    "anonymous": false
-  },
-  {
-    "type": "event",
-    "name": "TransferApproval",
-    "inputs": [
-      {
-        "type": "address",
-        "name": "approver",
-        "internalType": "address",
-        "indexed": true
-      },
-      {
-        "type": "bytes32",
-        "name": "indentifier",
-        "internalType": "bytes32",
-        "indexed": true
-      },
-      {
-        "type": "address",
-        "name": "from",
-        "internalType": "address",
-        "indexed": false
-      },
-      {
-        "type": "address",
-        "name": "to",
-        "internalType": "address",
-        "indexed": false
-      },
-      {
-        "type": "bool",
-        "name": "approved",
-        "internalType": "bool",
-        "indexed": false
-      }
-    ],
-    "anonymous": false
-  },
-  {
-    "type": "event",
-    "name": "Withdrawal",
-    "inputs": [
-      {
-        "type": "address",
-        "name": "account",
-        "internalType": "address",
-        "indexed": true
-      },
-      {
-        "type": "address",
-        "name": "token",
-        "internalType": "address",
-        "indexed": true
-      },
-      {
-        "type": "uint256",
-        "name": "amount",
-        "internalType": "uint256",
-        "indexed": false
-      }
-    ],
-    "anonymous": false
-  },
-  {
-    "type": "function",
-    "stateMutability": "nonpayable",
-    "payable": false,
-    "outputs": [],
-    "name": "approveTransfer",
-    "inputs": [
-      {
-        "type": "bytes32",
-        "name": "identifier",
-        "internalType": "bytes32"
-      },
-      {
-        "type": "uint256",
-        "name": "index",
-        "internalType": "uint256"
-      },
-      {
-        "type": "address",
-        "name": "from",
-        "internalType": "address"
-      },
-      {
-        "type": "address",
-        "name": "to",
-        "internalType": "address"
-      },
-      {
-        "type": "bool",
-        "name": "status",
-        "internalType": "bool"
-      }
-    ],
-    "constant": false
-  },
-  {
     "type": "function",
     "stateMutability": "view",
     "payable": false,
     "outputs": [
       {
-        "type": "uint256",
+        "type": "bytes32",
         "name": "",
-        "internalType": "uint256"
+        "internalType": "bytes32"
       }
     ],
-    "name": "attestationExpiryBlocks",
+    "name": "EIP712_OWNERSHIP_ATTESTATION_TYPEHASH",
     "inputs": [],
     "constant": true
   },
@@ -336,14 +155,8 @@
         "internalType": "uint256"
       }
     ],
-    "name": "attestationRequestFees",
-    "inputs": [
-      {
-        "type": "address",
-        "name": "",
-        "internalType": "address"
-      }
-    ],
+    "name": "MAX_ATTESTATIONS_PER_IDENTIFIER",
+    "inputs": [],
     "constant": true
   },
   {
@@ -352,34 +165,13 @@
     "payable": false,
     "outputs": [
       {
-        "type": "uint256[]",
+        "type": "uint256",
         "name": "",
-        "internalType": "uint256[]"
-      },
-      {
-        "type": "address[]",
-        "name": "",
-        "internalType": "address[]"
-      },
-      {
-        "type": "uint64[]",
-        "name": "",
-        "internalType": "uint64[]"
-      },
-      {
-        "type": "uint64[]",
-        "name": "",
-        "internalType": "uint64[]"
+        "internalType": "uint256"
       }
     ],
-    "name": "batchGetAttestationStats",
-    "inputs": [
-      {
-        "type": "bytes32[]",
-        "name": "identifiersToLookup",
-        "internalType": "bytes32[]"
-      }
-    ],
+    "name": "MAX_IDENTIFIERS_PER_ADDRESS",
+    "inputs": [],
     "constant": true
   },
   {
@@ -388,27 +180,27 @@
     "payable": false,
     "outputs": [
       {
-        "type": "bool",
+        "type": "bytes32",
         "name": "",
-        "internalType": "bool"
+        "internalType": "bytes32"
       }
     ],
-    "name": "checkProofOfPossession",
+    "name": "addressToIdentifiers",
     "inputs": [
       {
         "type": "address",
-        "name": "sender",
+        "name": "",
         "internalType": "address"
       },
       {
-        "type": "bytes",
-        "name": "blsKey",
-        "internalType": "bytes"
+        "type": "address",
+        "name": "",
+        "internalType": "address"
       },
       {
-        "type": "bytes",
-        "name": "blsPop",
-        "internalType": "bytes"
+        "type": "uint256",
+        "name": "",
+        "internalType": "uint256"
       }
     ],
     "constant": true
@@ -418,27 +210,22 @@
     "stateMutability": "nonpayable",
     "payable": false,
     "outputs": [],
-    "name": "complete",
+    "name": "batchRevokeAttestations",
     "inputs": [
       {
-        "type": "bytes32",
-        "name": "identifier",
-        "internalType": "bytes32"
+        "type": "address",
+        "name": "issuer",
+        "internalType": "address"
       },
       {
-        "type": "uint8",
-        "name": "v",
-        "internalType": "uint8"
+        "type": "bytes32[]",
+        "name": "identifiers",
+        "internalType": "bytes32[]"
       },
       {
-        "type": "bytes32",
-        "name": "r",
-        "internalType": "bytes32"
-      },
-      {
-        "type": "bytes32",
-        "name": "s",
-        "internalType": "bytes32"
+        "type": "address[]",
+        "name": "accounts",
+        "internalType": "address[]"
       }
     ],
     "constant": false
@@ -449,372 +236,52 @@
     "payable": false,
     "outputs": [
       {
-        "type": "uint256",
+        "type": "bytes32",
         "name": "",
-        "internalType": "uint256"
-      },
-      {
-        "type": "uint256",
-        "name": "",
-        "internalType": "uint256"
+        "internalType": "bytes32"
       }
     ],
-    "name": "fractionMulExp",
-    "inputs": [
-      {
-        "type": "uint256",
-        "name": "aNumerator",
-        "internalType": "uint256"
-      },
-      {
-        "type": "uint256",
-        "name": "aDenominator",
-        "internalType": "uint256"
-      },
-      {
-        "type": "uint256",
-        "name": "bNumerator",
-        "internalType": "uint256"
-      },
-      {
-        "type": "uint256",
-        "name": "bDenominator",
-        "internalType": "uint256"
-      },
-      {
-        "type": "uint256",
-        "name": "exponent",
-        "internalType": "uint256"
-      },
-      {
-        "type": "uint256",
-        "name": "_decimals",
-        "internalType": "uint256"
-      }
-    ],
+    "name": "eip712DomainSeparator",
+    "inputs": [],
     "constant": true
   },
   {
     "type": "function",
-    "stateMutability": "view",
+    "stateMutability": "pure",
     "payable": false,
     "outputs": [
       {
-        "type": "address[]",
+        "type": "bytes32",
         "name": "",
-        "internalType": "address[]"
+        "internalType": "bytes32"
       }
     ],
-    "name": "getAttestationIssuers",
+    "name": "getUniqueAttestationHash",
     "inputs": [
       {
         "type": "bytes32",
         "name": "identifier",
         "internalType": "bytes32"
-      },
-      {
-        "type": "address",
-        "name": "account",
-        "internalType": "address"
-      }
-    ],
-    "constant": true
-  },
-  {
-    "type": "function",
-    "stateMutability": "view",
-    "payable": false,
-    "outputs": [
-      {
-        "type": "uint256",
-        "name": "",
-        "internalType": "uint256"
-      }
-    ],
-    "name": "getAttestationRequestFee",
-    "inputs": [
-      {
-        "type": "address",
-        "name": "token",
-        "internalType": "address"
-      }
-    ],
-    "constant": true
-  },
-  {
-    "type": "function",
-    "stateMutability": "view",
-    "payable": false,
-    "outputs": [
-      {
-        "type": "uint8",
-        "name": "",
-        "internalType": "uint8"
-      },
-      {
-        "type": "uint32",
-        "name": "",
-        "internalType": "uint32"
-      },
-      {
-        "type": "address",
-        "name": "",
-        "internalType": "address"
-      }
-    ],
-    "name": "getAttestationState",
-    "inputs": [
-      {
-        "type": "bytes32",
-        "name": "identifier",
-        "internalType": "bytes32"
-      },
-      {
-        "type": "address",
-        "name": "account",
-        "internalType": "address"
       },
       {
         "type": "address",
         "name": "issuer",
         "internalType": "address"
-      }
-    ],
-    "constant": true
-  },
-  {
-    "type": "function",
-    "stateMutability": "view",
-    "payable": false,
-    "outputs": [
-      {
-        "type": "uint32",
-        "name": "",
-        "internalType": "uint32"
-      },
-      {
-        "type": "uint32",
-        "name": "",
-        "internalType": "uint32"
-      }
-    ],
-    "name": "getAttestationStats",
-    "inputs": [
-      {
-        "type": "bytes32",
-        "name": "identifier",
-        "internalType": "bytes32"
       },
       {
         "type": "address",
         "name": "account",
         "internalType": "address"
-      }
-    ],
-    "constant": true
-  },
-  {
-    "type": "function",
-    "stateMutability": "view",
-    "payable": false,
-    "outputs": [
-      {
-        "type": "uint256",
-        "name": "",
-        "internalType": "uint256"
-      }
-    ],
-    "name": "getBlockNumberFromHeader",
-    "inputs": [
-      {
-        "type": "bytes",
-        "name": "header",
-        "internalType": "bytes"
-      }
-    ],
-    "constant": true
-  },
-  {
-    "type": "function",
-    "stateMutability": "view",
-    "payable": false,
-    "outputs": [
-      {
-        "type": "uint32[]",
-        "name": "",
-        "internalType": "uint32[]"
-      },
-      {
-        "type": "address[]",
-        "name": "",
-        "internalType": "address[]"
-      },
-      {
-        "type": "uint256[]",
-        "name": "",
-        "internalType": "uint256[]"
-      },
-      {
-        "type": "bytes",
-        "name": "",
-        "internalType": "bytes"
-      }
-    ],
-    "name": "getCompletableAttestations",
-    "inputs": [
-      {
-        "type": "bytes32",
-        "name": "identifier",
-        "internalType": "bytes32"
       },
       {
         "type": "address",
-        "name": "account",
+        "name": "signer",
         "internalType": "address"
-      }
-    ],
-    "constant": true
-  },
-  {
-    "type": "function",
-    "stateMutability": "view",
-    "payable": false,
-    "outputs": [
-      {
-        "type": "uint256",
-        "name": "",
-        "internalType": "uint256"
-      }
-    ],
-    "name": "getEpochNumber",
-    "inputs": [],
-    "constant": true
-  },
-  {
-    "type": "function",
-    "stateMutability": "view",
-    "payable": false,
-    "outputs": [
-      {
-        "type": "uint256",
-        "name": "",
-        "internalType": "uint256"
-      }
-    ],
-    "name": "getEpochNumberOfBlock",
-    "inputs": [
-      {
-        "type": "uint256",
-        "name": "blockNumber",
-        "internalType": "uint256"
-      }
-    ],
-    "constant": true
-  },
-  {
-    "type": "function",
-    "stateMutability": "view",
-    "payable": false,
-    "outputs": [
-      {
-        "type": "uint256",
-        "name": "",
-        "internalType": "uint256"
-      }
-    ],
-    "name": "getEpochSize",
-    "inputs": [],
-    "constant": true
-  },
-  {
-    "type": "function",
-    "stateMutability": "view",
-    "payable": false,
-    "outputs": [
-      {
-        "type": "uint256",
-        "name": "",
-        "internalType": "uint256"
-      }
-    ],
-    "name": "getMaxAttestations",
-    "inputs": [],
-    "constant": true
-  },
-  {
-    "type": "function",
-    "stateMutability": "view",
-    "payable": false,
-    "outputs": [
-      {
-        "type": "bytes32",
-        "name": "",
-        "internalType": "bytes32"
-      }
-    ],
-    "name": "getParentSealBitmap",
-    "inputs": [
-      {
-        "type": "uint256",
-        "name": "blockNumber",
-        "internalType": "uint256"
-      }
-    ],
-    "constant": true
-  },
-  {
-    "type": "function",
-    "stateMutability": "view",
-    "payable": false,
-    "outputs": [
-      {
-        "type": "uint32",
-        "name": "",
-        "internalType": "uint32"
       },
       {
-        "type": "uint32",
-        "name": "",
-        "internalType": "uint32"
-      },
-      {
-        "type": "address",
-        "name": "",
-        "internalType": "address"
-      }
-    ],
-    "name": "getUnselectedRequest",
-    "inputs": [
-      {
-        "type": "bytes32",
-        "name": "identifier",
-        "internalType": "bytes32"
-      },
-      {
-        "type": "address",
-        "name": "account",
-        "internalType": "address"
-      }
-    ],
-    "constant": true
-  },
-  {
-    "type": "function",
-    "stateMutability": "view",
-    "payable": false,
-    "outputs": [
-      {
-        "type": "bytes32",
-        "name": "",
-        "internalType": "bytes32"
-      }
-    ],
-    "name": "getVerifiedSealBitmapFromHeader",
-    "inputs": [
-      {
-        "type": "bytes",
-        "name": "header",
-        "internalType": "bytes"
+        "type": "uint64",
+        "name": "issuedOn",
+        "internalType": "uint64"
       }
     ],
     "constant": true
@@ -855,17 +322,42 @@
     "payable": false,
     "outputs": [
       {
+        "type": "address",
+        "name": "account",
+        "internalType": "address"
+      },
+      {
+        "type": "address",
+        "name": "signer",
+        "internalType": "address"
+      },
+      {
+        "type": "uint64",
+        "name": "issuedOn",
+        "internalType": "uint64"
+      },
+      {
+        "type": "uint64",
+        "name": "publishedOn",
+        "internalType": "uint64"
+      }
+    ],
+    "name": "identifierToAttestations",
+    "inputs": [
+      {
         "type": "bytes32",
         "name": "",
         "internalType": "bytes32"
-      }
-    ],
-    "name": "hashHeader",
-    "inputs": [
+      },
       {
-        "type": "bytes",
-        "name": "header",
-        "internalType": "bytes"
+        "type": "address",
+        "name": "",
+        "internalType": "address"
+      },
+      {
+        "type": "uint256",
+        "name": "",
+        "internalType": "uint256"
       }
     ],
     "constant": true
@@ -876,38 +368,7 @@
     "payable": false,
     "outputs": [],
     "name": "initialize",
-    "inputs": [
-      {
-        "type": "address",
-        "name": "registryAddress",
-        "internalType": "address"
-      },
-      {
-        "type": "uint256",
-        "name": "_attestationExpiryBlocks",
-        "internalType": "uint256"
-      },
-      {
-        "type": "uint256",
-        "name": "_selectIssuersWaitBlocks",
-        "internalType": "uint256"
-      },
-      {
-        "type": "uint256",
-        "name": "_maxAttestations",
-        "internalType": "uint256"
-      },
-      {
-        "type": "address[]",
-        "name": "attestationRequestFeeTokens",
-        "internalType": "address[]"
-      },
-      {
-        "type": "uint256[]",
-        "name": "attestationRequestFeeValues",
-        "internalType": "uint256[]"
-      }
-    ],
+    "inputs": [],
     "constant": false
   },
   {
@@ -946,17 +407,42 @@
     "payable": false,
     "outputs": [
       {
+        "type": "uint256[]",
+        "name": "countsPerIssuer",
+        "internalType": "uint256[]"
+      },
+      {
         "type": "address[]",
-        "name": "",
+        "name": "accounts",
         "internalType": "address[]"
+      },
+      {
+        "type": "address[]",
+        "name": "signers",
+        "internalType": "address[]"
+      },
+      {
+        "type": "uint64[]",
+        "name": "issuedOns",
+        "internalType": "uint64[]"
+      },
+      {
+        "type": "uint64[]",
+        "name": "publishedOns",
+        "internalType": "uint64[]"
       }
     ],
-    "name": "lookupAccountsForIdentifier",
+    "name": "lookupAttestations",
     "inputs": [
       {
         "type": "bytes32",
         "name": "identifier",
         "internalType": "bytes32"
+      },
+      {
+        "type": "address[]",
+        "name": "trustedIssuers",
+        "internalType": "address[]"
       }
     ],
     "constant": true
@@ -967,83 +453,27 @@
     "payable": false,
     "outputs": [
       {
-        "type": "uint256",
-        "name": "",
-        "internalType": "uint256"
-      }
-    ],
-    "name": "maxAttestations",
-    "inputs": [],
-    "constant": true
-  },
-  {
-    "type": "function",
-    "stateMutability": "view",
-    "payable": false,
-    "outputs": [
+        "type": "uint256[]",
+        "name": "countsPerIssuer",
+        "internalType": "uint256[]"
+      },
       {
-        "type": "uint256",
-        "name": "",
-        "internalType": "uint256"
+        "type": "bytes32[]",
+        "name": "identifiers",
+        "internalType": "bytes32[]"
       }
     ],
-    "name": "minQuorumSize",
+    "name": "lookupIdentifiers",
     "inputs": [
       {
-        "type": "uint256",
-        "name": "blockNumber",
-        "internalType": "uint256"
-      }
-    ],
-    "constant": true
-  },
-  {
-    "type": "function",
-    "stateMutability": "view",
-    "payable": false,
-    "outputs": [
+        "type": "address",
+        "name": "account",
+        "internalType": "address"
+      },
       {
-        "type": "uint256",
-        "name": "",
-        "internalType": "uint256"
-      }
-    ],
-    "name": "minQuorumSizeInCurrentSet",
-    "inputs": [],
-    "constant": true
-  },
-  {
-    "type": "function",
-    "stateMutability": "view",
-    "payable": false,
-    "outputs": [
-      {
-        "type": "uint256",
-        "name": "",
-        "internalType": "uint256"
-      }
-    ],
-    "name": "numberValidatorsInCurrentSet",
-    "inputs": [],
-    "constant": true
-  },
-  {
-    "type": "function",
-    "stateMutability": "view",
-    "payable": false,
-    "outputs": [
-      {
-        "type": "uint256",
-        "name": "",
-        "internalType": "uint256"
-      }
-    ],
-    "name": "numberValidatorsInSet",
-    "inputs": [
-      {
-        "type": "uint256",
-        "name": "blockNumber",
-        "internalType": "uint256"
+        "type": "address[]",
+        "name": "trustedIssuers",
+        "internalType": "address[]"
       }
     ],
     "constant": true
@@ -1065,29 +495,78 @@
   },
   {
     "type": "function",
-    "stateMutability": "view",
+    "stateMutability": "nonpayable",
     "payable": false,
-    "outputs": [
-      {
-        "type": "uint256",
-        "name": "",
-        "internalType": "uint256"
-      }
-    ],
-    "name": "pendingWithdrawals",
+    "outputs": [],
+    "name": "registerAttestation",
     "inputs": [
       {
+        "type": "bytes32",
+        "name": "identifier",
+        "internalType": "bytes32"
+      },
+      {
         "type": "address",
-        "name": "",
+        "name": "issuer",
         "internalType": "address"
       },
       {
         "type": "address",
-        "name": "",
+        "name": "account",
         "internalType": "address"
+      },
+      {
+        "type": "address",
+        "name": "signer",
+        "internalType": "address"
+      },
+      {
+        "type": "uint64",
+        "name": "issuedOn",
+        "internalType": "uint64"
+      },
+      {
+        "type": "uint8",
+        "name": "v",
+        "internalType": "uint8"
+      },
+      {
+        "type": "bytes32",
+        "name": "r",
+        "internalType": "bytes32"
+      },
+      {
+        "type": "bytes32",
+        "name": "s",
+        "internalType": "bytes32"
       }
     ],
-    "constant": true
+    "constant": false
+  },
+  {
+    "type": "function",
+    "stateMutability": "nonpayable",
+    "payable": false,
+    "outputs": [],
+    "name": "registerAttestationAsIssuer",
+    "inputs": [
+      {
+        "type": "bytes32",
+        "name": "identifier",
+        "internalType": "bytes32"
+      },
+      {
+        "type": "address",
+        "name": "account",
+        "internalType": "address"
+      },
+      {
+        "type": "uint64",
+        "name": "issuedOn",
+        "internalType": "uint64"
+      }
+    ],
+    "constant": false
   },
   {
     "type": "function",
@@ -1100,7 +579,7 @@
         "internalType": "contract IRegistry"
       }
     ],
-    "name": "registry",
+    "name": "registryContract",
     "inputs": [],
     "constant": true
   },
@@ -1118,177 +597,22 @@
     "stateMutability": "nonpayable",
     "payable": false,
     "outputs": [],
-    "name": "request",
+    "name": "revokeAttestation",
     "inputs": [
       {
         "type": "bytes32",
         "name": "identifier",
         "internalType": "bytes32"
-      },
-      {
-        "type": "uint256",
-        "name": "attestationsRequested",
-        "internalType": "uint256"
       },
       {
         "type": "address",
-        "name": "attestationRequestFeeToken",
+        "name": "issuer",
         "internalType": "address"
-      }
-    ],
-    "constant": false
-  },
-  {
-    "type": "function",
-    "stateMutability": "view",
-    "payable": false,
-    "outputs": [],
-    "name": "requireNAttestationsRequested",
-    "inputs": [
-      {
-        "type": "bytes32",
-        "name": "identifier",
-        "internalType": "bytes32"
       },
       {
         "type": "address",
         "name": "account",
         "internalType": "address"
-      },
-      {
-        "type": "uint32",
-        "name": "expected",
-        "internalType": "uint32"
-      }
-    ],
-    "constant": true
-  },
-  {
-    "type": "function",
-    "stateMutability": "nonpayable",
-    "payable": false,
-    "outputs": [],
-    "name": "revoke",
-    "inputs": [
-      {
-        "type": "bytes32",
-        "name": "identifier",
-        "internalType": "bytes32"
-      },
-      {
-        "type": "uint256",
-        "name": "index",
-        "internalType": "uint256"
-      }
-    ],
-    "constant": false
-  },
-  {
-    "type": "function",
-    "stateMutability": "nonpayable",
-    "payable": false,
-    "outputs": [],
-    "name": "selectIssuers",
-    "inputs": [
-      {
-        "type": "bytes32",
-        "name": "identifier",
-        "internalType": "bytes32"
-      }
-    ],
-    "constant": false
-  },
-  {
-    "type": "function",
-    "stateMutability": "view",
-    "payable": false,
-    "outputs": [
-      {
-        "type": "uint256",
-        "name": "",
-        "internalType": "uint256"
-      }
-    ],
-    "name": "selectIssuersWaitBlocks",
-    "inputs": [],
-    "constant": true
-  },
-  {
-    "type": "function",
-    "stateMutability": "nonpayable",
-    "payable": false,
-    "outputs": [],
-    "name": "setAttestationExpiryBlocks",
-    "inputs": [
-      {
-        "type": "uint256",
-        "name": "_attestationExpiryBlocks",
-        "internalType": "uint256"
-      }
-    ],
-    "constant": false
-  },
-  {
-    "type": "function",
-    "stateMutability": "nonpayable",
-    "payable": false,
-    "outputs": [],
-    "name": "setAttestationRequestFee",
-    "inputs": [
-      {
-        "type": "address",
-        "name": "token",
-        "internalType": "address"
-      },
-      {
-        "type": "uint256",
-        "name": "fee",
-        "internalType": "uint256"
-      }
-    ],
-    "constant": false
-  },
-  {
-    "type": "function",
-    "stateMutability": "nonpayable",
-    "payable": false,
-    "outputs": [],
-    "name": "setMaxAttestations",
-    "inputs": [
-      {
-        "type": "uint256",
-        "name": "_maxAttestations",
-        "internalType": "uint256"
-      }
-    ],
-    "constant": false
-  },
-  {
-    "type": "function",
-    "stateMutability": "nonpayable",
-    "payable": false,
-    "outputs": [],
-    "name": "setRegistry",
-    "inputs": [
-      {
-        "type": "address",
-        "name": "registryAddress",
-        "internalType": "address"
-      }
-    ],
-    "constant": false
-  },
-  {
-    "type": "function",
-    "stateMutability": "nonpayable",
-    "payable": false,
-    "outputs": [],
-    "name": "setSelectIssuersWaitBlocks",
-    "inputs": [
-      {
-        "type": "uint256",
-        "name": "_selectIssuersWaitBlocks",
-        "internalType": "uint256"
       }
     ],
     "constant": false
@@ -1304,13 +628,8 @@
         "internalType": "bool"
       }
     ],
-    "name": "transferApprovals",
+    "name": "revokedAttestations",
     "inputs": [
-      {
-        "type": "address",
-        "name": "",
-        "internalType": "address"
-      },
       {
         "type": "bytes32",
         "name": "",
@@ -1338,14 +657,8 @@
     "type": "function",
     "stateMutability": "view",
     "payable": false,
-    "outputs": [
-      {
-        "type": "address",
-        "name": "",
-        "internalType": "address"
-      }
-    ],
-    "name": "validateAttestationCode",
+    "outputs": [],
+    "name": "validateAttestationSig",
     "inputs": [
       {
         "type": "bytes32",
@@ -1354,8 +667,23 @@
       },
       {
         "type": "address",
+        "name": "issuer",
+        "internalType": "address"
+      },
+      {
+        "type": "address",
         "name": "account",
         "internalType": "address"
+      },
+      {
+        "type": "address",
+        "name": "signer",
+        "internalType": "address"
+      },
+      {
+        "type": "uint64",
+        "name": "issuedOn",
+        "internalType": "uint64"
       },
       {
         "type": "uint8",
@@ -1374,67 +702,5 @@
       }
     ],
     "constant": true
-  },
-  {
-    "type": "function",
-    "stateMutability": "view",
-    "payable": false,
-    "outputs": [
-      {
-        "type": "address",
-        "name": "",
-        "internalType": "address"
-      }
-    ],
-    "name": "validatorSignerAddressFromCurrentSet",
-    "inputs": [
-      {
-        "type": "uint256",
-        "name": "index",
-        "internalType": "uint256"
-      }
-    ],
-    "constant": true
-  },
-  {
-    "type": "function",
-    "stateMutability": "view",
-    "payable": false,
-    "outputs": [
-      {
-        "type": "address",
-        "name": "",
-        "internalType": "address"
-      }
-    ],
-    "name": "validatorSignerAddressFromSet",
-    "inputs": [
-      {
-        "type": "uint256",
-        "name": "index",
-        "internalType": "uint256"
-      },
-      {
-        "type": "uint256",
-        "name": "blockNumber",
-        "internalType": "uint256"
-      }
-    ],
-    "constant": true
-  },
-  {
-    "type": "function",
-    "stateMutability": "nonpayable",
-    "payable": false,
-    "outputs": [],
-    "name": "withdraw",
-    "inputs": [
-      {
-        "type": "address",
-        "name": "token",
-        "internalType": "address"
-      }
-    ],
-    "constant": false
   }
 ]

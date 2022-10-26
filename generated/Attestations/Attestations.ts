@@ -10,173 +10,97 @@ import {
   BigInt
 } from "@graphprotocol/graph-ts";
 
-export class AttestationCompleted extends ethereum.Event {
-  get params(): AttestationCompleted__Params {
-    return new AttestationCompleted__Params(this);
+export class AttestationRegistered extends ethereum.Event {
+  get params(): AttestationRegistered__Params {
+    return new AttestationRegistered__Params(this);
   }
 }
 
-export class AttestationCompleted__Params {
-  _event: AttestationCompleted;
+export class AttestationRegistered__Params {
+  _event: AttestationRegistered;
 
-  constructor(event: AttestationCompleted) {
+  constructor(event: AttestationRegistered) {
     this._event = event;
   }
 
   get identifier(): Bytes {
     return this._event.parameters[0].value.toBytes();
-  }
-
-  get account(): Address {
-    return this._event.parameters[1].value.toAddress();
   }
 
   get issuer(): Address {
+    return this._event.parameters[1].value.toAddress();
+  }
+
+  get account(): Address {
     return this._event.parameters[2].value.toAddress();
   }
-}
 
-export class AttestationExpiryBlocksSet extends ethereum.Event {
-  get params(): AttestationExpiryBlocksSet__Params {
-    return new AttestationExpiryBlocksSet__Params(this);
+  get signer(): Address {
+    return this._event.parameters[3].value.toAddress();
+  }
+
+  get issuedOn(): BigInt {
+    return this._event.parameters[4].value.toBigInt();
+  }
+
+  get publishedOn(): BigInt {
+    return this._event.parameters[5].value.toBigInt();
   }
 }
 
-export class AttestationExpiryBlocksSet__Params {
-  _event: AttestationExpiryBlocksSet;
-
-  constructor(event: AttestationExpiryBlocksSet) {
-    this._event = event;
-  }
-
-  get value(): BigInt {
-    return this._event.parameters[0].value.toBigInt();
+export class AttestationRevoked extends ethereum.Event {
+  get params(): AttestationRevoked__Params {
+    return new AttestationRevoked__Params(this);
   }
 }
 
-export class AttestationIssuerSelected extends ethereum.Event {
-  get params(): AttestationIssuerSelected__Params {
-    return new AttestationIssuerSelected__Params(this);
-  }
-}
+export class AttestationRevoked__Params {
+  _event: AttestationRevoked;
 
-export class AttestationIssuerSelected__Params {
-  _event: AttestationIssuerSelected;
-
-  constructor(event: AttestationIssuerSelected) {
+  constructor(event: AttestationRevoked) {
     this._event = event;
   }
 
   get identifier(): Bytes {
     return this._event.parameters[0].value.toBytes();
-  }
-
-  get account(): Address {
-    return this._event.parameters[1].value.toAddress();
   }
 
   get issuer(): Address {
-    return this._event.parameters[2].value.toAddress();
-  }
-
-  get attestationRequestFeeToken(): Address {
-    return this._event.parameters[3].value.toAddress();
-  }
-}
-
-export class AttestationRequestFeeSet extends ethereum.Event {
-  get params(): AttestationRequestFeeSet__Params {
-    return new AttestationRequestFeeSet__Params(this);
-  }
-}
-
-export class AttestationRequestFeeSet__Params {
-  _event: AttestationRequestFeeSet;
-
-  constructor(event: AttestationRequestFeeSet) {
-    this._event = event;
-  }
-
-  get token(): Address {
-    return this._event.parameters[0].value.toAddress();
-  }
-
-  get value(): BigInt {
-    return this._event.parameters[1].value.toBigInt();
-  }
-}
-
-export class AttestationsRequested extends ethereum.Event {
-  get params(): AttestationsRequested__Params {
-    return new AttestationsRequested__Params(this);
-  }
-}
-
-export class AttestationsRequested__Params {
-  _event: AttestationsRequested;
-
-  constructor(event: AttestationsRequested) {
-    this._event = event;
-  }
-
-  get identifier(): Bytes {
-    return this._event.parameters[0].value.toBytes();
+    return this._event.parameters[1].value.toAddress();
   }
 
   get account(): Address {
-    return this._event.parameters[1].value.toAddress();
-  }
-
-  get attestationsRequested(): BigInt {
-    return this._event.parameters[2].value.toBigInt();
-  }
-
-  get attestationRequestFeeToken(): Address {
-    return this._event.parameters[3].value.toAddress();
-  }
-}
-
-export class AttestationsTransferred extends ethereum.Event {
-  get params(): AttestationsTransferred__Params {
-    return new AttestationsTransferred__Params(this);
-  }
-}
-
-export class AttestationsTransferred__Params {
-  _event: AttestationsTransferred;
-
-  constructor(event: AttestationsTransferred) {
-    this._event = event;
-  }
-
-  get identifier(): Bytes {
-    return this._event.parameters[0].value.toBytes();
-  }
-
-  get fromAccount(): Address {
-    return this._event.parameters[1].value.toAddress();
-  }
-
-  get toAccount(): Address {
     return this._event.parameters[2].value.toAddress();
   }
-}
 
-export class MaxAttestationsSet extends ethereum.Event {
-  get params(): MaxAttestationsSet__Params {
-    return new MaxAttestationsSet__Params(this);
+  get signer(): Address {
+    return this._event.parameters[3].value.toAddress();
+  }
+
+  get issuedOn(): BigInt {
+    return this._event.parameters[4].value.toBigInt();
+  }
+
+  get publishedOn(): BigInt {
+    return this._event.parameters[5].value.toBigInt();
   }
 }
 
-export class MaxAttestationsSet__Params {
-  _event: MaxAttestationsSet;
+export class EIP712DomainSeparatorSet extends ethereum.Event {
+  get params(): EIP712DomainSeparatorSet__Params {
+    return new EIP712DomainSeparatorSet__Params(this);
+  }
+}
 
-  constructor(event: MaxAttestationsSet) {
+export class EIP712DomainSeparatorSet__Params {
+  _event: EIP712DomainSeparatorSet;
+
+  constructor(event: EIP712DomainSeparatorSet) {
     this._event = event;
   }
 
-  get value(): BigInt {
-    return this._event.parameters[0].value.toBigInt();
+  get eip712DomainSeparator(): Bytes {
+    return this._event.parameters[0].value.toBytes();
   }
 }
 
@@ -202,235 +126,6 @@ export class OwnershipTransferred__Params {
   }
 }
 
-export class RegistrySet extends ethereum.Event {
-  get params(): RegistrySet__Params {
-    return new RegistrySet__Params(this);
-  }
-}
-
-export class RegistrySet__Params {
-  _event: RegistrySet;
-
-  constructor(event: RegistrySet) {
-    this._event = event;
-  }
-
-  get registryAddress(): Address {
-    return this._event.parameters[0].value.toAddress();
-  }
-}
-
-export class SelectIssuersWaitBlocksSet extends ethereum.Event {
-  get params(): SelectIssuersWaitBlocksSet__Params {
-    return new SelectIssuersWaitBlocksSet__Params(this);
-  }
-}
-
-export class SelectIssuersWaitBlocksSet__Params {
-  _event: SelectIssuersWaitBlocksSet;
-
-  constructor(event: SelectIssuersWaitBlocksSet) {
-    this._event = event;
-  }
-
-  get value(): BigInt {
-    return this._event.parameters[0].value.toBigInt();
-  }
-}
-
-export class TransferApproval extends ethereum.Event {
-  get params(): TransferApproval__Params {
-    return new TransferApproval__Params(this);
-  }
-}
-
-export class TransferApproval__Params {
-  _event: TransferApproval;
-
-  constructor(event: TransferApproval) {
-    this._event = event;
-  }
-
-  get approver(): Address {
-    return this._event.parameters[0].value.toAddress();
-  }
-
-  get indentifier(): Bytes {
-    return this._event.parameters[1].value.toBytes();
-  }
-
-  get from(): Address {
-    return this._event.parameters[2].value.toAddress();
-  }
-
-  get to(): Address {
-    return this._event.parameters[3].value.toAddress();
-  }
-
-  get approved(): boolean {
-    return this._event.parameters[4].value.toBoolean();
-  }
-}
-
-export class Withdrawal extends ethereum.Event {
-  get params(): Withdrawal__Params {
-    return new Withdrawal__Params(this);
-  }
-}
-
-export class Withdrawal__Params {
-  _event: Withdrawal;
-
-  constructor(event: Withdrawal) {
-    this._event = event;
-  }
-
-  get account(): Address {
-    return this._event.parameters[0].value.toAddress();
-  }
-
-  get token(): Address {
-    return this._event.parameters[1].value.toAddress();
-  }
-
-  get amount(): BigInt {
-    return this._event.parameters[2].value.toBigInt();
-  }
-}
-
-export class Attestations__batchGetAttestationStatsResult {
-  value0: Array<BigInt>;
-  value1: Array<Address>;
-  value2: Array<BigInt>;
-  value3: Array<BigInt>;
-
-  constructor(
-    value0: Array<BigInt>,
-    value1: Array<Address>,
-    value2: Array<BigInt>,
-    value3: Array<BigInt>
-  ) {
-    this.value0 = value0;
-    this.value1 = value1;
-    this.value2 = value2;
-    this.value3 = value3;
-  }
-
-  toMap(): TypedMap<string, ethereum.Value> {
-    let map = new TypedMap<string, ethereum.Value>();
-    map.set("value0", ethereum.Value.fromUnsignedBigIntArray(this.value0));
-    map.set("value1", ethereum.Value.fromAddressArray(this.value1));
-    map.set("value2", ethereum.Value.fromUnsignedBigIntArray(this.value2));
-    map.set("value3", ethereum.Value.fromUnsignedBigIntArray(this.value3));
-    return map;
-  }
-}
-
-export class Attestations__fractionMulExpResult {
-  value0: BigInt;
-  value1: BigInt;
-
-  constructor(value0: BigInt, value1: BigInt) {
-    this.value0 = value0;
-    this.value1 = value1;
-  }
-
-  toMap(): TypedMap<string, ethereum.Value> {
-    let map = new TypedMap<string, ethereum.Value>();
-    map.set("value0", ethereum.Value.fromUnsignedBigInt(this.value0));
-    map.set("value1", ethereum.Value.fromUnsignedBigInt(this.value1));
-    return map;
-  }
-}
-
-export class Attestations__getAttestationStateResult {
-  value0: i32;
-  value1: BigInt;
-  value2: Address;
-
-  constructor(value0: i32, value1: BigInt, value2: Address) {
-    this.value0 = value0;
-    this.value1 = value1;
-    this.value2 = value2;
-  }
-
-  toMap(): TypedMap<string, ethereum.Value> {
-    let map = new TypedMap<string, ethereum.Value>();
-    map.set(
-      "value0",
-      ethereum.Value.fromUnsignedBigInt(BigInt.fromI32(this.value0))
-    );
-    map.set("value1", ethereum.Value.fromUnsignedBigInt(this.value1));
-    map.set("value2", ethereum.Value.fromAddress(this.value2));
-    return map;
-  }
-}
-
-export class Attestations__getAttestationStatsResult {
-  value0: BigInt;
-  value1: BigInt;
-
-  constructor(value0: BigInt, value1: BigInt) {
-    this.value0 = value0;
-    this.value1 = value1;
-  }
-
-  toMap(): TypedMap<string, ethereum.Value> {
-    let map = new TypedMap<string, ethereum.Value>();
-    map.set("value0", ethereum.Value.fromUnsignedBigInt(this.value0));
-    map.set("value1", ethereum.Value.fromUnsignedBigInt(this.value1));
-    return map;
-  }
-}
-
-export class Attestations__getCompletableAttestationsResult {
-  value0: Array<BigInt>;
-  value1: Array<Address>;
-  value2: Array<BigInt>;
-  value3: Bytes;
-
-  constructor(
-    value0: Array<BigInt>,
-    value1: Array<Address>,
-    value2: Array<BigInt>,
-    value3: Bytes
-  ) {
-    this.value0 = value0;
-    this.value1 = value1;
-    this.value2 = value2;
-    this.value3 = value3;
-  }
-
-  toMap(): TypedMap<string, ethereum.Value> {
-    let map = new TypedMap<string, ethereum.Value>();
-    map.set("value0", ethereum.Value.fromUnsignedBigIntArray(this.value0));
-    map.set("value1", ethereum.Value.fromAddressArray(this.value1));
-    map.set("value2", ethereum.Value.fromUnsignedBigIntArray(this.value2));
-    map.set("value3", ethereum.Value.fromBytes(this.value3));
-    return map;
-  }
-}
-
-export class Attestations__getUnselectedRequestResult {
-  value0: BigInt;
-  value1: BigInt;
-  value2: Address;
-
-  constructor(value0: BigInt, value1: BigInt, value2: Address) {
-    this.value0 = value0;
-    this.value1 = value1;
-    this.value2 = value2;
-  }
-
-  toMap(): TypedMap<string, ethereum.Value> {
-    let map = new TypedMap<string, ethereum.Value>();
-    map.set("value0", ethereum.Value.fromUnsignedBigInt(this.value0));
-    map.set("value1", ethereum.Value.fromUnsignedBigInt(this.value1));
-    map.set("value2", ethereum.Value.fromAddress(this.value2));
-    return map;
-  }
-}
-
 export class Attestations__getVersionNumberResult {
   value0: BigInt;
   value1: BigInt;
@@ -452,6 +147,143 @@ export class Attestations__getVersionNumberResult {
     map.set("value3", ethereum.Value.fromUnsignedBigInt(this.value3));
     return map;
   }
+
+  getValue0(): BigInt {
+    return this.value0;
+  }
+
+  getValue1(): BigInt {
+    return this.value1;
+  }
+
+  getValue2(): BigInt {
+    return this.value2;
+  }
+
+  getValue3(): BigInt {
+    return this.value3;
+  }
+}
+
+export class Attestations__identifierToAttestationsResult {
+  value0: Address;
+  value1: Address;
+  value2: BigInt;
+  value3: BigInt;
+
+  constructor(
+    value0: Address,
+    value1: Address,
+    value2: BigInt,
+    value3: BigInt
+  ) {
+    this.value0 = value0;
+    this.value1 = value1;
+    this.value2 = value2;
+    this.value3 = value3;
+  }
+
+  toMap(): TypedMap<string, ethereum.Value> {
+    let map = new TypedMap<string, ethereum.Value>();
+    map.set("value0", ethereum.Value.fromAddress(this.value0));
+    map.set("value1", ethereum.Value.fromAddress(this.value1));
+    map.set("value2", ethereum.Value.fromUnsignedBigInt(this.value2));
+    map.set("value3", ethereum.Value.fromUnsignedBigInt(this.value3));
+    return map;
+  }
+
+  getAccount(): Address {
+    return this.value0;
+  }
+
+  getSigner(): Address {
+    return this.value1;
+  }
+
+  getIssuedOn(): BigInt {
+    return this.value2;
+  }
+
+  getPublishedOn(): BigInt {
+    return this.value3;
+  }
+}
+
+export class Attestations__lookupAttestationsResult {
+  value0: Array<BigInt>;
+  value1: Array<Address>;
+  value2: Array<Address>;
+  value3: Array<BigInt>;
+  value4: Array<BigInt>;
+
+  constructor(
+    value0: Array<BigInt>,
+    value1: Array<Address>,
+    value2: Array<Address>,
+    value3: Array<BigInt>,
+    value4: Array<BigInt>
+  ) {
+    this.value0 = value0;
+    this.value1 = value1;
+    this.value2 = value2;
+    this.value3 = value3;
+    this.value4 = value4;
+  }
+
+  toMap(): TypedMap<string, ethereum.Value> {
+    let map = new TypedMap<string, ethereum.Value>();
+    map.set("value0", ethereum.Value.fromUnsignedBigIntArray(this.value0));
+    map.set("value1", ethereum.Value.fromAddressArray(this.value1));
+    map.set("value2", ethereum.Value.fromAddressArray(this.value2));
+    map.set("value3", ethereum.Value.fromUnsignedBigIntArray(this.value3));
+    map.set("value4", ethereum.Value.fromUnsignedBigIntArray(this.value4));
+    return map;
+  }
+
+  getCountsPerIssuer(): Array<BigInt> {
+    return this.value0;
+  }
+
+  getAccounts(): Array<Address> {
+    return this.value1;
+  }
+
+  getSigners(): Array<Address> {
+    return this.value2;
+  }
+
+  getIssuedOns(): Array<BigInt> {
+    return this.value3;
+  }
+
+  getPublishedOns(): Array<BigInt> {
+    return this.value4;
+  }
+}
+
+export class Attestations__lookupIdentifiersResult {
+  value0: Array<BigInt>;
+  value1: Array<Bytes>;
+
+  constructor(value0: Array<BigInt>, value1: Array<Bytes>) {
+    this.value0 = value0;
+    this.value1 = value1;
+  }
+
+  toMap(): TypedMap<string, ethereum.Value> {
+    let map = new TypedMap<string, ethereum.Value>();
+    map.set("value0", ethereum.Value.fromUnsignedBigIntArray(this.value0));
+    map.set("value1", ethereum.Value.fromFixedBytesArray(this.value1));
+    return map;
+  }
+
+  getCountsPerIssuer(): Array<BigInt> {
+    return this.value0;
+  }
+
+  getIdentifiers(): Array<Bytes> {
+    return this.value1;
+  }
 }
 
 export class Attestations extends ethereum.SmartContract {
@@ -459,501 +291,21 @@ export class Attestations extends ethereum.SmartContract {
     return new Attestations("Attestations", address);
   }
 
-  attestationExpiryBlocks(): BigInt {
+  EIP712_OWNERSHIP_ATTESTATION_TYPEHASH(): Bytes {
     let result = super.call(
-      "attestationExpiryBlocks",
-      "attestationExpiryBlocks():(uint256)",
+      "EIP712_OWNERSHIP_ATTESTATION_TYPEHASH",
+      "EIP712_OWNERSHIP_ATTESTATION_TYPEHASH():(bytes32)",
       []
-    );
-
-    return result[0].toBigInt();
-  }
-
-  try_attestationExpiryBlocks(): ethereum.CallResult<BigInt> {
-    let result = super.tryCall(
-      "attestationExpiryBlocks",
-      "attestationExpiryBlocks():(uint256)",
-      []
-    );
-    if (result.reverted) {
-      return new ethereum.CallResult();
-    }
-    let value = result.value;
-    return ethereum.CallResult.fromValue(value[0].toBigInt());
-  }
-
-  attestationRequestFees(param0: Address): BigInt {
-    let result = super.call(
-      "attestationRequestFees",
-      "attestationRequestFees(address):(uint256)",
-      [ethereum.Value.fromAddress(param0)]
-    );
-
-    return result[0].toBigInt();
-  }
-
-  try_attestationRequestFees(param0: Address): ethereum.CallResult<BigInt> {
-    let result = super.tryCall(
-      "attestationRequestFees",
-      "attestationRequestFees(address):(uint256)",
-      [ethereum.Value.fromAddress(param0)]
-    );
-    if (result.reverted) {
-      return new ethereum.CallResult();
-    }
-    let value = result.value;
-    return ethereum.CallResult.fromValue(value[0].toBigInt());
-  }
-
-  batchGetAttestationStats(
-    identifiersToLookup: Array<Bytes>
-  ): Attestations__batchGetAttestationStatsResult {
-    let result = super.call(
-      "batchGetAttestationStats",
-      "batchGetAttestationStats(bytes32[]):(uint256[],address[],uint64[],uint64[])",
-      [ethereum.Value.fromFixedBytesArray(identifiersToLookup)]
-    );
-
-    return new Attestations__batchGetAttestationStatsResult(
-      result[0].toBigIntArray(),
-      result[1].toAddressArray(),
-      result[2].toBigIntArray(),
-      result[3].toBigIntArray()
-    );
-  }
-
-  try_batchGetAttestationStats(
-    identifiersToLookup: Array<Bytes>
-  ): ethereum.CallResult<Attestations__batchGetAttestationStatsResult> {
-    let result = super.tryCall(
-      "batchGetAttestationStats",
-      "batchGetAttestationStats(bytes32[]):(uint256[],address[],uint64[],uint64[])",
-      [ethereum.Value.fromFixedBytesArray(identifiersToLookup)]
-    );
-    if (result.reverted) {
-      return new ethereum.CallResult();
-    }
-    let value = result.value;
-    return ethereum.CallResult.fromValue(
-      new Attestations__batchGetAttestationStatsResult(
-        value[0].toBigIntArray(),
-        value[1].toAddressArray(),
-        value[2].toBigIntArray(),
-        value[3].toBigIntArray()
-      )
-    );
-  }
-
-  checkProofOfPossession(
-    sender: Address,
-    blsKey: Bytes,
-    blsPop: Bytes
-  ): boolean {
-    let result = super.call(
-      "checkProofOfPossession",
-      "checkProofOfPossession(address,bytes,bytes):(bool)",
-      [
-        ethereum.Value.fromAddress(sender),
-        ethereum.Value.fromBytes(blsKey),
-        ethereum.Value.fromBytes(blsPop)
-      ]
-    );
-
-    return result[0].toBoolean();
-  }
-
-  try_checkProofOfPossession(
-    sender: Address,
-    blsKey: Bytes,
-    blsPop: Bytes
-  ): ethereum.CallResult<boolean> {
-    let result = super.tryCall(
-      "checkProofOfPossession",
-      "checkProofOfPossession(address,bytes,bytes):(bool)",
-      [
-        ethereum.Value.fromAddress(sender),
-        ethereum.Value.fromBytes(blsKey),
-        ethereum.Value.fromBytes(blsPop)
-      ]
-    );
-    if (result.reverted) {
-      return new ethereum.CallResult();
-    }
-    let value = result.value;
-    return ethereum.CallResult.fromValue(value[0].toBoolean());
-  }
-
-  fractionMulExp(
-    aNumerator: BigInt,
-    aDenominator: BigInt,
-    bNumerator: BigInt,
-    bDenominator: BigInt,
-    exponent: BigInt,
-    _decimals: BigInt
-  ): Attestations__fractionMulExpResult {
-    let result = super.call(
-      "fractionMulExp",
-      "fractionMulExp(uint256,uint256,uint256,uint256,uint256,uint256):(uint256,uint256)",
-      [
-        ethereum.Value.fromUnsignedBigInt(aNumerator),
-        ethereum.Value.fromUnsignedBigInt(aDenominator),
-        ethereum.Value.fromUnsignedBigInt(bNumerator),
-        ethereum.Value.fromUnsignedBigInt(bDenominator),
-        ethereum.Value.fromUnsignedBigInt(exponent),
-        ethereum.Value.fromUnsignedBigInt(_decimals)
-      ]
-    );
-
-    return new Attestations__fractionMulExpResult(
-      result[0].toBigInt(),
-      result[1].toBigInt()
-    );
-  }
-
-  try_fractionMulExp(
-    aNumerator: BigInt,
-    aDenominator: BigInt,
-    bNumerator: BigInt,
-    bDenominator: BigInt,
-    exponent: BigInt,
-    _decimals: BigInt
-  ): ethereum.CallResult<Attestations__fractionMulExpResult> {
-    let result = super.tryCall(
-      "fractionMulExp",
-      "fractionMulExp(uint256,uint256,uint256,uint256,uint256,uint256):(uint256,uint256)",
-      [
-        ethereum.Value.fromUnsignedBigInt(aNumerator),
-        ethereum.Value.fromUnsignedBigInt(aDenominator),
-        ethereum.Value.fromUnsignedBigInt(bNumerator),
-        ethereum.Value.fromUnsignedBigInt(bDenominator),
-        ethereum.Value.fromUnsignedBigInt(exponent),
-        ethereum.Value.fromUnsignedBigInt(_decimals)
-      ]
-    );
-    if (result.reverted) {
-      return new ethereum.CallResult();
-    }
-    let value = result.value;
-    return ethereum.CallResult.fromValue(
-      new Attestations__fractionMulExpResult(
-        value[0].toBigInt(),
-        value[1].toBigInt()
-      )
-    );
-  }
-
-  getAttestationIssuers(identifier: Bytes, account: Address): Array<Address> {
-    let result = super.call(
-      "getAttestationIssuers",
-      "getAttestationIssuers(bytes32,address):(address[])",
-      [
-        ethereum.Value.fromFixedBytes(identifier),
-        ethereum.Value.fromAddress(account)
-      ]
-    );
-
-    return result[0].toAddressArray();
-  }
-
-  try_getAttestationIssuers(
-    identifier: Bytes,
-    account: Address
-  ): ethereum.CallResult<Array<Address>> {
-    let result = super.tryCall(
-      "getAttestationIssuers",
-      "getAttestationIssuers(bytes32,address):(address[])",
-      [
-        ethereum.Value.fromFixedBytes(identifier),
-        ethereum.Value.fromAddress(account)
-      ]
-    );
-    if (result.reverted) {
-      return new ethereum.CallResult();
-    }
-    let value = result.value;
-    return ethereum.CallResult.fromValue(value[0].toAddressArray());
-  }
-
-  getAttestationRequestFee(token: Address): BigInt {
-    let result = super.call(
-      "getAttestationRequestFee",
-      "getAttestationRequestFee(address):(uint256)",
-      [ethereum.Value.fromAddress(token)]
-    );
-
-    return result[0].toBigInt();
-  }
-
-  try_getAttestationRequestFee(token: Address): ethereum.CallResult<BigInt> {
-    let result = super.tryCall(
-      "getAttestationRequestFee",
-      "getAttestationRequestFee(address):(uint256)",
-      [ethereum.Value.fromAddress(token)]
-    );
-    if (result.reverted) {
-      return new ethereum.CallResult();
-    }
-    let value = result.value;
-    return ethereum.CallResult.fromValue(value[0].toBigInt());
-  }
-
-  getAttestationState(
-    identifier: Bytes,
-    account: Address,
-    issuer: Address
-  ): Attestations__getAttestationStateResult {
-    let result = super.call(
-      "getAttestationState",
-      "getAttestationState(bytes32,address,address):(uint8,uint32,address)",
-      [
-        ethereum.Value.fromFixedBytes(identifier),
-        ethereum.Value.fromAddress(account),
-        ethereum.Value.fromAddress(issuer)
-      ]
-    );
-
-    return new Attestations__getAttestationStateResult(
-      result[0].toI32(),
-      result[1].toBigInt(),
-      result[2].toAddress()
-    );
-  }
-
-  try_getAttestationState(
-    identifier: Bytes,
-    account: Address,
-    issuer: Address
-  ): ethereum.CallResult<Attestations__getAttestationStateResult> {
-    let result = super.tryCall(
-      "getAttestationState",
-      "getAttestationState(bytes32,address,address):(uint8,uint32,address)",
-      [
-        ethereum.Value.fromFixedBytes(identifier),
-        ethereum.Value.fromAddress(account),
-        ethereum.Value.fromAddress(issuer)
-      ]
-    );
-    if (result.reverted) {
-      return new ethereum.CallResult();
-    }
-    let value = result.value;
-    return ethereum.CallResult.fromValue(
-      new Attestations__getAttestationStateResult(
-        value[0].toI32(),
-        value[1].toBigInt(),
-        value[2].toAddress()
-      )
-    );
-  }
-
-  getAttestationStats(
-    identifier: Bytes,
-    account: Address
-  ): Attestations__getAttestationStatsResult {
-    let result = super.call(
-      "getAttestationStats",
-      "getAttestationStats(bytes32,address):(uint32,uint32)",
-      [
-        ethereum.Value.fromFixedBytes(identifier),
-        ethereum.Value.fromAddress(account)
-      ]
-    );
-
-    return new Attestations__getAttestationStatsResult(
-      result[0].toBigInt(),
-      result[1].toBigInt()
-    );
-  }
-
-  try_getAttestationStats(
-    identifier: Bytes,
-    account: Address
-  ): ethereum.CallResult<Attestations__getAttestationStatsResult> {
-    let result = super.tryCall(
-      "getAttestationStats",
-      "getAttestationStats(bytes32,address):(uint32,uint32)",
-      [
-        ethereum.Value.fromFixedBytes(identifier),
-        ethereum.Value.fromAddress(account)
-      ]
-    );
-    if (result.reverted) {
-      return new ethereum.CallResult();
-    }
-    let value = result.value;
-    return ethereum.CallResult.fromValue(
-      new Attestations__getAttestationStatsResult(
-        value[0].toBigInt(),
-        value[1].toBigInt()
-      )
-    );
-  }
-
-  getBlockNumberFromHeader(header: Bytes): BigInt {
-    let result = super.call(
-      "getBlockNumberFromHeader",
-      "getBlockNumberFromHeader(bytes):(uint256)",
-      [ethereum.Value.fromBytes(header)]
-    );
-
-    return result[0].toBigInt();
-  }
-
-  try_getBlockNumberFromHeader(header: Bytes): ethereum.CallResult<BigInt> {
-    let result = super.tryCall(
-      "getBlockNumberFromHeader",
-      "getBlockNumberFromHeader(bytes):(uint256)",
-      [ethereum.Value.fromBytes(header)]
-    );
-    if (result.reverted) {
-      return new ethereum.CallResult();
-    }
-    let value = result.value;
-    return ethereum.CallResult.fromValue(value[0].toBigInt());
-  }
-
-  getCompletableAttestations(
-    identifier: Bytes,
-    account: Address
-  ): Attestations__getCompletableAttestationsResult {
-    let result = super.call(
-      "getCompletableAttestations",
-      "getCompletableAttestations(bytes32,address):(uint32[],address[],uint256[],bytes)",
-      [
-        ethereum.Value.fromFixedBytes(identifier),
-        ethereum.Value.fromAddress(account)
-      ]
-    );
-
-    return new Attestations__getCompletableAttestationsResult(
-      result[0].toBigIntArray(),
-      result[1].toAddressArray(),
-      result[2].toBigIntArray(),
-      result[3].toBytes()
-    );
-  }
-
-  try_getCompletableAttestations(
-    identifier: Bytes,
-    account: Address
-  ): ethereum.CallResult<Attestations__getCompletableAttestationsResult> {
-    let result = super.tryCall(
-      "getCompletableAttestations",
-      "getCompletableAttestations(bytes32,address):(uint32[],address[],uint256[],bytes)",
-      [
-        ethereum.Value.fromFixedBytes(identifier),
-        ethereum.Value.fromAddress(account)
-      ]
-    );
-    if (result.reverted) {
-      return new ethereum.CallResult();
-    }
-    let value = result.value;
-    return ethereum.CallResult.fromValue(
-      new Attestations__getCompletableAttestationsResult(
-        value[0].toBigIntArray(),
-        value[1].toAddressArray(),
-        value[2].toBigIntArray(),
-        value[3].toBytes()
-      )
-    );
-  }
-
-  getEpochNumber(): BigInt {
-    let result = super.call("getEpochNumber", "getEpochNumber():(uint256)", []);
-
-    return result[0].toBigInt();
-  }
-
-  try_getEpochNumber(): ethereum.CallResult<BigInt> {
-    let result = super.tryCall(
-      "getEpochNumber",
-      "getEpochNumber():(uint256)",
-      []
-    );
-    if (result.reverted) {
-      return new ethereum.CallResult();
-    }
-    let value = result.value;
-    return ethereum.CallResult.fromValue(value[0].toBigInt());
-  }
-
-  getEpochNumberOfBlock(blockNumber: BigInt): BigInt {
-    let result = super.call(
-      "getEpochNumberOfBlock",
-      "getEpochNumberOfBlock(uint256):(uint256)",
-      [ethereum.Value.fromUnsignedBigInt(blockNumber)]
-    );
-
-    return result[0].toBigInt();
-  }
-
-  try_getEpochNumberOfBlock(blockNumber: BigInt): ethereum.CallResult<BigInt> {
-    let result = super.tryCall(
-      "getEpochNumberOfBlock",
-      "getEpochNumberOfBlock(uint256):(uint256)",
-      [ethereum.Value.fromUnsignedBigInt(blockNumber)]
-    );
-    if (result.reverted) {
-      return new ethereum.CallResult();
-    }
-    let value = result.value;
-    return ethereum.CallResult.fromValue(value[0].toBigInt());
-  }
-
-  getEpochSize(): BigInt {
-    let result = super.call("getEpochSize", "getEpochSize():(uint256)", []);
-
-    return result[0].toBigInt();
-  }
-
-  try_getEpochSize(): ethereum.CallResult<BigInt> {
-    let result = super.tryCall("getEpochSize", "getEpochSize():(uint256)", []);
-    if (result.reverted) {
-      return new ethereum.CallResult();
-    }
-    let value = result.value;
-    return ethereum.CallResult.fromValue(value[0].toBigInt());
-  }
-
-  getMaxAttestations(): BigInt {
-    let result = super.call(
-      "getMaxAttestations",
-      "getMaxAttestations():(uint256)",
-      []
-    );
-
-    return result[0].toBigInt();
-  }
-
-  try_getMaxAttestations(): ethereum.CallResult<BigInt> {
-    let result = super.tryCall(
-      "getMaxAttestations",
-      "getMaxAttestations():(uint256)",
-      []
-    );
-    if (result.reverted) {
-      return new ethereum.CallResult();
-    }
-    let value = result.value;
-    return ethereum.CallResult.fromValue(value[0].toBigInt());
-  }
-
-  getParentSealBitmap(blockNumber: BigInt): Bytes {
-    let result = super.call(
-      "getParentSealBitmap",
-      "getParentSealBitmap(uint256):(bytes32)",
-      [ethereum.Value.fromUnsignedBigInt(blockNumber)]
     );
 
     return result[0].toBytes();
   }
 
-  try_getParentSealBitmap(blockNumber: BigInt): ethereum.CallResult<Bytes> {
+  try_EIP712_OWNERSHIP_ATTESTATION_TYPEHASH(): ethereum.CallResult<Bytes> {
     let result = super.tryCall(
-      "getParentSealBitmap",
-      "getParentSealBitmap(uint256):(bytes32)",
-      [ethereum.Value.fromUnsignedBigInt(blockNumber)]
+      "EIP712_OWNERSHIP_ATTESTATION_TYPEHASH",
+      "EIP712_OWNERSHIP_ATTESTATION_TYPEHASH():(bytes32)",
+      []
     );
     if (result.reverted) {
       return new ethereum.CallResult();
@@ -962,68 +314,153 @@ export class Attestations extends ethereum.SmartContract {
     return ethereum.CallResult.fromValue(value[0].toBytes());
   }
 
-  getUnselectedRequest(
-    identifier: Bytes,
-    account: Address
-  ): Attestations__getUnselectedRequestResult {
+  MAX_ATTESTATIONS_PER_IDENTIFIER(): BigInt {
     let result = super.call(
-      "getUnselectedRequest",
-      "getUnselectedRequest(bytes32,address):(uint32,uint32,address)",
+      "MAX_ATTESTATIONS_PER_IDENTIFIER",
+      "MAX_ATTESTATIONS_PER_IDENTIFIER():(uint256)",
+      []
+    );
+
+    return result[0].toBigInt();
+  }
+
+  try_MAX_ATTESTATIONS_PER_IDENTIFIER(): ethereum.CallResult<BigInt> {
+    let result = super.tryCall(
+      "MAX_ATTESTATIONS_PER_IDENTIFIER",
+      "MAX_ATTESTATIONS_PER_IDENTIFIER():(uint256)",
+      []
+    );
+    if (result.reverted) {
+      return new ethereum.CallResult();
+    }
+    let value = result.value;
+    return ethereum.CallResult.fromValue(value[0].toBigInt());
+  }
+
+  MAX_IDENTIFIERS_PER_ADDRESS(): BigInt {
+    let result = super.call(
+      "MAX_IDENTIFIERS_PER_ADDRESS",
+      "MAX_IDENTIFIERS_PER_ADDRESS():(uint256)",
+      []
+    );
+
+    return result[0].toBigInt();
+  }
+
+  try_MAX_IDENTIFIERS_PER_ADDRESS(): ethereum.CallResult<BigInt> {
+    let result = super.tryCall(
+      "MAX_IDENTIFIERS_PER_ADDRESS",
+      "MAX_IDENTIFIERS_PER_ADDRESS():(uint256)",
+      []
+    );
+    if (result.reverted) {
+      return new ethereum.CallResult();
+    }
+    let value = result.value;
+    return ethereum.CallResult.fromValue(value[0].toBigInt());
+  }
+
+  addressToIdentifiers(
+    param0: Address,
+    param1: Address,
+    param2: BigInt
+  ): Bytes {
+    let result = super.call(
+      "addressToIdentifiers",
+      "addressToIdentifiers(address,address,uint256):(bytes32)",
       [
-        ethereum.Value.fromFixedBytes(identifier),
-        ethereum.Value.fromAddress(account)
+        ethereum.Value.fromAddress(param0),
+        ethereum.Value.fromAddress(param1),
+        ethereum.Value.fromUnsignedBigInt(param2)
       ]
     );
 
-    return new Attestations__getUnselectedRequestResult(
-      result[0].toBigInt(),
-      result[1].toBigInt(),
-      result[2].toAddress()
-    );
+    return result[0].toBytes();
   }
 
-  try_getUnselectedRequest(
-    identifier: Bytes,
-    account: Address
-  ): ethereum.CallResult<Attestations__getUnselectedRequestResult> {
+  try_addressToIdentifiers(
+    param0: Address,
+    param1: Address,
+    param2: BigInt
+  ): ethereum.CallResult<Bytes> {
     let result = super.tryCall(
-      "getUnselectedRequest",
-      "getUnselectedRequest(bytes32,address):(uint32,uint32,address)",
+      "addressToIdentifiers",
+      "addressToIdentifiers(address,address,uint256):(bytes32)",
       [
-        ethereum.Value.fromFixedBytes(identifier),
-        ethereum.Value.fromAddress(account)
+        ethereum.Value.fromAddress(param0),
+        ethereum.Value.fromAddress(param1),
+        ethereum.Value.fromUnsignedBigInt(param2)
       ]
     );
     if (result.reverted) {
       return new ethereum.CallResult();
     }
     let value = result.value;
-    return ethereum.CallResult.fromValue(
-      new Attestations__getUnselectedRequestResult(
-        value[0].toBigInt(),
-        value[1].toBigInt(),
-        value[2].toAddress()
-      )
-    );
+    return ethereum.CallResult.fromValue(value[0].toBytes());
   }
 
-  getVerifiedSealBitmapFromHeader(header: Bytes): Bytes {
+  eip712DomainSeparator(): Bytes {
     let result = super.call(
-      "getVerifiedSealBitmapFromHeader",
-      "getVerifiedSealBitmapFromHeader(bytes):(bytes32)",
-      [ethereum.Value.fromBytes(header)]
+      "eip712DomainSeparator",
+      "eip712DomainSeparator():(bytes32)",
+      []
     );
 
     return result[0].toBytes();
   }
 
-  try_getVerifiedSealBitmapFromHeader(
-    header: Bytes
+  try_eip712DomainSeparator(): ethereum.CallResult<Bytes> {
+    let result = super.tryCall(
+      "eip712DomainSeparator",
+      "eip712DomainSeparator():(bytes32)",
+      []
+    );
+    if (result.reverted) {
+      return new ethereum.CallResult();
+    }
+    let value = result.value;
+    return ethereum.CallResult.fromValue(value[0].toBytes());
+  }
+
+  getUniqueAttestationHash(
+    identifier: Bytes,
+    issuer: Address,
+    account: Address,
+    signer: Address,
+    issuedOn: BigInt
+  ): Bytes {
+    let result = super.call(
+      "getUniqueAttestationHash",
+      "getUniqueAttestationHash(bytes32,address,address,address,uint64):(bytes32)",
+      [
+        ethereum.Value.fromFixedBytes(identifier),
+        ethereum.Value.fromAddress(issuer),
+        ethereum.Value.fromAddress(account),
+        ethereum.Value.fromAddress(signer),
+        ethereum.Value.fromUnsignedBigInt(issuedOn)
+      ]
+    );
+
+    return result[0].toBytes();
+  }
+
+  try_getUniqueAttestationHash(
+    identifier: Bytes,
+    issuer: Address,
+    account: Address,
+    signer: Address,
+    issuedOn: BigInt
   ): ethereum.CallResult<Bytes> {
     let result = super.tryCall(
-      "getVerifiedSealBitmapFromHeader",
-      "getVerifiedSealBitmapFromHeader(bytes):(bytes32)",
-      [ethereum.Value.fromBytes(header)]
+      "getUniqueAttestationHash",
+      "getUniqueAttestationHash(bytes32,address,address,address,uint64):(bytes32)",
+      [
+        ethereum.Value.fromFixedBytes(identifier),
+        ethereum.Value.fromAddress(issuer),
+        ethereum.Value.fromAddress(account),
+        ethereum.Value.fromAddress(signer),
+        ethereum.Value.fromUnsignedBigInt(issuedOn)
+      ]
     );
     if (result.reverted) {
       return new ethereum.CallResult();
@@ -1069,23 +506,55 @@ export class Attestations extends ethereum.SmartContract {
     );
   }
 
-  hashHeader(header: Bytes): Bytes {
-    let result = super.call("hashHeader", "hashHeader(bytes):(bytes32)", [
-      ethereum.Value.fromBytes(header)
-    ]);
+  identifierToAttestations(
+    param0: Bytes,
+    param1: Address,
+    param2: BigInt
+  ): Attestations__identifierToAttestationsResult {
+    let result = super.call(
+      "identifierToAttestations",
+      "identifierToAttestations(bytes32,address,uint256):(address,address,uint64,uint64)",
+      [
+        ethereum.Value.fromFixedBytes(param0),
+        ethereum.Value.fromAddress(param1),
+        ethereum.Value.fromUnsignedBigInt(param2)
+      ]
+    );
 
-    return result[0].toBytes();
+    return new Attestations__identifierToAttestationsResult(
+      result[0].toAddress(),
+      result[1].toAddress(),
+      result[2].toBigInt(),
+      result[3].toBigInt()
+    );
   }
 
-  try_hashHeader(header: Bytes): ethereum.CallResult<Bytes> {
-    let result = super.tryCall("hashHeader", "hashHeader(bytes):(bytes32)", [
-      ethereum.Value.fromBytes(header)
-    ]);
+  try_identifierToAttestations(
+    param0: Bytes,
+    param1: Address,
+    param2: BigInt
+  ): ethereum.CallResult<Attestations__identifierToAttestationsResult> {
+    let result = super.tryCall(
+      "identifierToAttestations",
+      "identifierToAttestations(bytes32,address,uint256):(address,address,uint64,uint64)",
+      [
+        ethereum.Value.fromFixedBytes(param0),
+        ethereum.Value.fromAddress(param1),
+        ethereum.Value.fromUnsignedBigInt(param2)
+      ]
+    );
     if (result.reverted) {
       return new ethereum.CallResult();
     }
     let value = result.value;
-    return ethereum.CallResult.fromValue(value[0].toBytes());
+    return ethereum.CallResult.fromValue(
+      new Attestations__identifierToAttestationsResult(
+        value[0].toAddress(),
+        value[1].toAddress(),
+        value[2].toBigInt(),
+        value[3].toBigInt()
+      )
+    );
   }
 
   initialized(): boolean {
@@ -1118,144 +587,96 @@ export class Attestations extends ethereum.SmartContract {
     return ethereum.CallResult.fromValue(value[0].toBoolean());
   }
 
-  lookupAccountsForIdentifier(identifier: Bytes): Array<Address> {
+  lookupAttestations(
+    identifier: Bytes,
+    trustedIssuers: Array<Address>
+  ): Attestations__lookupAttestationsResult {
     let result = super.call(
-      "lookupAccountsForIdentifier",
-      "lookupAccountsForIdentifier(bytes32):(address[])",
-      [ethereum.Value.fromFixedBytes(identifier)]
+      "lookupAttestations",
+      "lookupAttestations(bytes32,address[]):(uint256[],address[],address[],uint64[],uint64[])",
+      [
+        ethereum.Value.fromFixedBytes(identifier),
+        ethereum.Value.fromAddressArray(trustedIssuers)
+      ]
     );
 
-    return result[0].toAddressArray();
+    return new Attestations__lookupAttestationsResult(
+      result[0].toBigIntArray(),
+      result[1].toAddressArray(),
+      result[2].toAddressArray(),
+      result[3].toBigIntArray(),
+      result[4].toBigIntArray()
+    );
   }
 
-  try_lookupAccountsForIdentifier(
-    identifier: Bytes
-  ): ethereum.CallResult<Array<Address>> {
+  try_lookupAttestations(
+    identifier: Bytes,
+    trustedIssuers: Array<Address>
+  ): ethereum.CallResult<Attestations__lookupAttestationsResult> {
     let result = super.tryCall(
-      "lookupAccountsForIdentifier",
-      "lookupAccountsForIdentifier(bytes32):(address[])",
-      [ethereum.Value.fromFixedBytes(identifier)]
+      "lookupAttestations",
+      "lookupAttestations(bytes32,address[]):(uint256[],address[],address[],uint64[],uint64[])",
+      [
+        ethereum.Value.fromFixedBytes(identifier),
+        ethereum.Value.fromAddressArray(trustedIssuers)
+      ]
     );
     if (result.reverted) {
       return new ethereum.CallResult();
     }
     let value = result.value;
-    return ethereum.CallResult.fromValue(value[0].toAddressArray());
+    return ethereum.CallResult.fromValue(
+      new Attestations__lookupAttestationsResult(
+        value[0].toBigIntArray(),
+        value[1].toAddressArray(),
+        value[2].toAddressArray(),
+        value[3].toBigIntArray(),
+        value[4].toBigIntArray()
+      )
+    );
   }
 
-  maxAttestations(): BigInt {
+  lookupIdentifiers(
+    account: Address,
+    trustedIssuers: Array<Address>
+  ): Attestations__lookupIdentifiersResult {
     let result = super.call(
-      "maxAttestations",
-      "maxAttestations():(uint256)",
-      []
+      "lookupIdentifiers",
+      "lookupIdentifiers(address,address[]):(uint256[],bytes32[])",
+      [
+        ethereum.Value.fromAddress(account),
+        ethereum.Value.fromAddressArray(trustedIssuers)
+      ]
     );
 
-    return result[0].toBigInt();
+    return new Attestations__lookupIdentifiersResult(
+      result[0].toBigIntArray(),
+      result[1].toBytesArray()
+    );
   }
 
-  try_maxAttestations(): ethereum.CallResult<BigInt> {
+  try_lookupIdentifiers(
+    account: Address,
+    trustedIssuers: Array<Address>
+  ): ethereum.CallResult<Attestations__lookupIdentifiersResult> {
     let result = super.tryCall(
-      "maxAttestations",
-      "maxAttestations():(uint256)",
-      []
+      "lookupIdentifiers",
+      "lookupIdentifiers(address,address[]):(uint256[],bytes32[])",
+      [
+        ethereum.Value.fromAddress(account),
+        ethereum.Value.fromAddressArray(trustedIssuers)
+      ]
     );
     if (result.reverted) {
       return new ethereum.CallResult();
     }
     let value = result.value;
-    return ethereum.CallResult.fromValue(value[0].toBigInt());
-  }
-
-  minQuorumSize(blockNumber: BigInt): BigInt {
-    let result = super.call(
-      "minQuorumSize",
-      "minQuorumSize(uint256):(uint256)",
-      [ethereum.Value.fromUnsignedBigInt(blockNumber)]
+    return ethereum.CallResult.fromValue(
+      new Attestations__lookupIdentifiersResult(
+        value[0].toBigIntArray(),
+        value[1].toBytesArray()
+      )
     );
-
-    return result[0].toBigInt();
-  }
-
-  try_minQuorumSize(blockNumber: BigInt): ethereum.CallResult<BigInt> {
-    let result = super.tryCall(
-      "minQuorumSize",
-      "minQuorumSize(uint256):(uint256)",
-      [ethereum.Value.fromUnsignedBigInt(blockNumber)]
-    );
-    if (result.reverted) {
-      return new ethereum.CallResult();
-    }
-    let value = result.value;
-    return ethereum.CallResult.fromValue(value[0].toBigInt());
-  }
-
-  minQuorumSizeInCurrentSet(): BigInt {
-    let result = super.call(
-      "minQuorumSizeInCurrentSet",
-      "minQuorumSizeInCurrentSet():(uint256)",
-      []
-    );
-
-    return result[0].toBigInt();
-  }
-
-  try_minQuorumSizeInCurrentSet(): ethereum.CallResult<BigInt> {
-    let result = super.tryCall(
-      "minQuorumSizeInCurrentSet",
-      "minQuorumSizeInCurrentSet():(uint256)",
-      []
-    );
-    if (result.reverted) {
-      return new ethereum.CallResult();
-    }
-    let value = result.value;
-    return ethereum.CallResult.fromValue(value[0].toBigInt());
-  }
-
-  numberValidatorsInCurrentSet(): BigInt {
-    let result = super.call(
-      "numberValidatorsInCurrentSet",
-      "numberValidatorsInCurrentSet():(uint256)",
-      []
-    );
-
-    return result[0].toBigInt();
-  }
-
-  try_numberValidatorsInCurrentSet(): ethereum.CallResult<BigInt> {
-    let result = super.tryCall(
-      "numberValidatorsInCurrentSet",
-      "numberValidatorsInCurrentSet():(uint256)",
-      []
-    );
-    if (result.reverted) {
-      return new ethereum.CallResult();
-    }
-    let value = result.value;
-    return ethereum.CallResult.fromValue(value[0].toBigInt());
-  }
-
-  numberValidatorsInSet(blockNumber: BigInt): BigInt {
-    let result = super.call(
-      "numberValidatorsInSet",
-      "numberValidatorsInSet(uint256):(uint256)",
-      [ethereum.Value.fromUnsignedBigInt(blockNumber)]
-    );
-
-    return result[0].toBigInt();
-  }
-
-  try_numberValidatorsInSet(blockNumber: BigInt): ethereum.CallResult<BigInt> {
-    let result = super.tryCall(
-      "numberValidatorsInSet",
-      "numberValidatorsInSet(uint256):(uint256)",
-      [ethereum.Value.fromUnsignedBigInt(blockNumber)]
-    );
-    if (result.reverted) {
-      return new ethereum.CallResult();
-    }
-    let value = result.value;
-    return ethereum.CallResult.fromValue(value[0].toBigInt());
   }
 
   owner(): Address {
@@ -1273,40 +694,22 @@ export class Attestations extends ethereum.SmartContract {
     return ethereum.CallResult.fromValue(value[0].toAddress());
   }
 
-  pendingWithdrawals(param0: Address, param1: Address): BigInt {
+  registryContract(): Address {
     let result = super.call(
-      "pendingWithdrawals",
-      "pendingWithdrawals(address,address):(uint256)",
-      [ethereum.Value.fromAddress(param0), ethereum.Value.fromAddress(param1)]
+      "registryContract",
+      "registryContract():(address)",
+      []
     );
-
-    return result[0].toBigInt();
-  }
-
-  try_pendingWithdrawals(
-    param0: Address,
-    param1: Address
-  ): ethereum.CallResult<BigInt> {
-    let result = super.tryCall(
-      "pendingWithdrawals",
-      "pendingWithdrawals(address,address):(uint256)",
-      [ethereum.Value.fromAddress(param0), ethereum.Value.fromAddress(param1)]
-    );
-    if (result.reverted) {
-      return new ethereum.CallResult();
-    }
-    let value = result.value;
-    return ethereum.CallResult.fromValue(value[0].toBigInt());
-  }
-
-  registry(): Address {
-    let result = super.call("registry", "registry():(address)", []);
 
     return result[0].toAddress();
   }
 
-  try_registry(): ethereum.CallResult<Address> {
-    let result = super.tryCall("registry", "registry():(address)", []);
+  try_registryContract(): ethereum.CallResult<Address> {
+    let result = super.tryCall(
+      "registryContract",
+      "registryContract():(address)",
+      []
+    );
     if (result.reverted) {
       return new ethereum.CallResult();
     }
@@ -1314,163 +717,27 @@ export class Attestations extends ethereum.SmartContract {
     return ethereum.CallResult.fromValue(value[0].toAddress());
   }
 
-  selectIssuersWaitBlocks(): BigInt {
+  revokedAttestations(param0: Bytes): boolean {
     let result = super.call(
-      "selectIssuersWaitBlocks",
-      "selectIssuersWaitBlocks():(uint256)",
-      []
-    );
-
-    return result[0].toBigInt();
-  }
-
-  try_selectIssuersWaitBlocks(): ethereum.CallResult<BigInt> {
-    let result = super.tryCall(
-      "selectIssuersWaitBlocks",
-      "selectIssuersWaitBlocks():(uint256)",
-      []
-    );
-    if (result.reverted) {
-      return new ethereum.CallResult();
-    }
-    let value = result.value;
-    return ethereum.CallResult.fromValue(value[0].toBigInt());
-  }
-
-  transferApprovals(param0: Address, param1: Bytes): boolean {
-    let result = super.call(
-      "transferApprovals",
-      "transferApprovals(address,bytes32):(bool)",
-      [
-        ethereum.Value.fromAddress(param0),
-        ethereum.Value.fromFixedBytes(param1)
-      ]
+      "revokedAttestations",
+      "revokedAttestations(bytes32):(bool)",
+      [ethereum.Value.fromFixedBytes(param0)]
     );
 
     return result[0].toBoolean();
   }
 
-  try_transferApprovals(
-    param0: Address,
-    param1: Bytes
-  ): ethereum.CallResult<boolean> {
+  try_revokedAttestations(param0: Bytes): ethereum.CallResult<boolean> {
     let result = super.tryCall(
-      "transferApprovals",
-      "transferApprovals(address,bytes32):(bool)",
-      [
-        ethereum.Value.fromAddress(param0),
-        ethereum.Value.fromFixedBytes(param1)
-      ]
+      "revokedAttestations",
+      "revokedAttestations(bytes32):(bool)",
+      [ethereum.Value.fromFixedBytes(param0)]
     );
     if (result.reverted) {
       return new ethereum.CallResult();
     }
     let value = result.value;
     return ethereum.CallResult.fromValue(value[0].toBoolean());
-  }
-
-  validateAttestationCode(
-    identifier: Bytes,
-    account: Address,
-    v: i32,
-    r: Bytes,
-    s: Bytes
-  ): Address {
-    let result = super.call(
-      "validateAttestationCode",
-      "validateAttestationCode(bytes32,address,uint8,bytes32,bytes32):(address)",
-      [
-        ethereum.Value.fromFixedBytes(identifier),
-        ethereum.Value.fromAddress(account),
-        ethereum.Value.fromUnsignedBigInt(BigInt.fromI32(v)),
-        ethereum.Value.fromFixedBytes(r),
-        ethereum.Value.fromFixedBytes(s)
-      ]
-    );
-
-    return result[0].toAddress();
-  }
-
-  try_validateAttestationCode(
-    identifier: Bytes,
-    account: Address,
-    v: i32,
-    r: Bytes,
-    s: Bytes
-  ): ethereum.CallResult<Address> {
-    let result = super.tryCall(
-      "validateAttestationCode",
-      "validateAttestationCode(bytes32,address,uint8,bytes32,bytes32):(address)",
-      [
-        ethereum.Value.fromFixedBytes(identifier),
-        ethereum.Value.fromAddress(account),
-        ethereum.Value.fromUnsignedBigInt(BigInt.fromI32(v)),
-        ethereum.Value.fromFixedBytes(r),
-        ethereum.Value.fromFixedBytes(s)
-      ]
-    );
-    if (result.reverted) {
-      return new ethereum.CallResult();
-    }
-    let value = result.value;
-    return ethereum.CallResult.fromValue(value[0].toAddress());
-  }
-
-  validatorSignerAddressFromCurrentSet(index: BigInt): Address {
-    let result = super.call(
-      "validatorSignerAddressFromCurrentSet",
-      "validatorSignerAddressFromCurrentSet(uint256):(address)",
-      [ethereum.Value.fromUnsignedBigInt(index)]
-    );
-
-    return result[0].toAddress();
-  }
-
-  try_validatorSignerAddressFromCurrentSet(
-    index: BigInt
-  ): ethereum.CallResult<Address> {
-    let result = super.tryCall(
-      "validatorSignerAddressFromCurrentSet",
-      "validatorSignerAddressFromCurrentSet(uint256):(address)",
-      [ethereum.Value.fromUnsignedBigInt(index)]
-    );
-    if (result.reverted) {
-      return new ethereum.CallResult();
-    }
-    let value = result.value;
-    return ethereum.CallResult.fromValue(value[0].toAddress());
-  }
-
-  validatorSignerAddressFromSet(index: BigInt, blockNumber: BigInt): Address {
-    let result = super.call(
-      "validatorSignerAddressFromSet",
-      "validatorSignerAddressFromSet(uint256,uint256):(address)",
-      [
-        ethereum.Value.fromUnsignedBigInt(index),
-        ethereum.Value.fromUnsignedBigInt(blockNumber)
-      ]
-    );
-
-    return result[0].toAddress();
-  }
-
-  try_validatorSignerAddressFromSet(
-    index: BigInt,
-    blockNumber: BigInt
-  ): ethereum.CallResult<Address> {
-    let result = super.tryCall(
-      "validatorSignerAddressFromSet",
-      "validatorSignerAddressFromSet(uint256,uint256):(address)",
-      [
-        ethereum.Value.fromUnsignedBigInt(index),
-        ethereum.Value.fromUnsignedBigInt(blockNumber)
-      ]
-    );
-    if (result.reverted) {
-      return new ethereum.CallResult();
-    }
-    let value = result.value;
-    return ethereum.CallResult.fromValue(value[0].toAddress());
   }
 }
 
@@ -1504,90 +771,40 @@ export class ConstructorCall__Outputs {
   }
 }
 
-export class ApproveTransferCall extends ethereum.Call {
-  get inputs(): ApproveTransferCall__Inputs {
-    return new ApproveTransferCall__Inputs(this);
+export class BatchRevokeAttestationsCall extends ethereum.Call {
+  get inputs(): BatchRevokeAttestationsCall__Inputs {
+    return new BatchRevokeAttestationsCall__Inputs(this);
   }
 
-  get outputs(): ApproveTransferCall__Outputs {
-    return new ApproveTransferCall__Outputs(this);
+  get outputs(): BatchRevokeAttestationsCall__Outputs {
+    return new BatchRevokeAttestationsCall__Outputs(this);
   }
 }
 
-export class ApproveTransferCall__Inputs {
-  _call: ApproveTransferCall;
+export class BatchRevokeAttestationsCall__Inputs {
+  _call: BatchRevokeAttestationsCall;
 
-  constructor(call: ApproveTransferCall) {
+  constructor(call: BatchRevokeAttestationsCall) {
     this._call = call;
   }
 
-  get identifier(): Bytes {
-    return this._call.inputValues[0].value.toBytes();
+  get issuer(): Address {
+    return this._call.inputValues[0].value.toAddress();
   }
 
-  get index(): BigInt {
-    return this._call.inputValues[1].value.toBigInt();
+  get identifiers(): Array<Bytes> {
+    return this._call.inputValues[1].value.toBytesArray();
   }
 
-  get from(): Address {
-    return this._call.inputValues[2].value.toAddress();
-  }
-
-  get to(): Address {
-    return this._call.inputValues[3].value.toAddress();
-  }
-
-  get status(): boolean {
-    return this._call.inputValues[4].value.toBoolean();
+  get accounts(): Array<Address> {
+    return this._call.inputValues[2].value.toAddressArray();
   }
 }
 
-export class ApproveTransferCall__Outputs {
-  _call: ApproveTransferCall;
+export class BatchRevokeAttestationsCall__Outputs {
+  _call: BatchRevokeAttestationsCall;
 
-  constructor(call: ApproveTransferCall) {
-    this._call = call;
-  }
-}
-
-export class CompleteCall extends ethereum.Call {
-  get inputs(): CompleteCall__Inputs {
-    return new CompleteCall__Inputs(this);
-  }
-
-  get outputs(): CompleteCall__Outputs {
-    return new CompleteCall__Outputs(this);
-  }
-}
-
-export class CompleteCall__Inputs {
-  _call: CompleteCall;
-
-  constructor(call: CompleteCall) {
-    this._call = call;
-  }
-
-  get identifier(): Bytes {
-    return this._call.inputValues[0].value.toBytes();
-  }
-
-  get v(): i32 {
-    return this._call.inputValues[1].value.toI32();
-  }
-
-  get r(): Bytes {
-    return this._call.inputValues[2].value.toBytes();
-  }
-
-  get s(): Bytes {
-    return this._call.inputValues[3].value.toBytes();
-  }
-}
-
-export class CompleteCall__Outputs {
-  _call: CompleteCall;
-
-  constructor(call: CompleteCall) {
+  constructor(call: BatchRevokeAttestationsCall) {
     this._call = call;
   }
 }
@@ -1608,36 +825,108 @@ export class InitializeCall__Inputs {
   constructor(call: InitializeCall) {
     this._call = call;
   }
-
-  get registryAddress(): Address {
-    return this._call.inputValues[0].value.toAddress();
-  }
-
-  get _attestationExpiryBlocks(): BigInt {
-    return this._call.inputValues[1].value.toBigInt();
-  }
-
-  get _selectIssuersWaitBlocks(): BigInt {
-    return this._call.inputValues[2].value.toBigInt();
-  }
-
-  get _maxAttestations(): BigInt {
-    return this._call.inputValues[3].value.toBigInt();
-  }
-
-  get attestationRequestFeeTokens(): Array<Address> {
-    return this._call.inputValues[4].value.toAddressArray();
-  }
-
-  get attestationRequestFeeValues(): Array<BigInt> {
-    return this._call.inputValues[5].value.toBigIntArray();
-  }
 }
 
 export class InitializeCall__Outputs {
   _call: InitializeCall;
 
   constructor(call: InitializeCall) {
+    this._call = call;
+  }
+}
+
+export class RegisterAttestationCall extends ethereum.Call {
+  get inputs(): RegisterAttestationCall__Inputs {
+    return new RegisterAttestationCall__Inputs(this);
+  }
+
+  get outputs(): RegisterAttestationCall__Outputs {
+    return new RegisterAttestationCall__Outputs(this);
+  }
+}
+
+export class RegisterAttestationCall__Inputs {
+  _call: RegisterAttestationCall;
+
+  constructor(call: RegisterAttestationCall) {
+    this._call = call;
+  }
+
+  get identifier(): Bytes {
+    return this._call.inputValues[0].value.toBytes();
+  }
+
+  get issuer(): Address {
+    return this._call.inputValues[1].value.toAddress();
+  }
+
+  get account(): Address {
+    return this._call.inputValues[2].value.toAddress();
+  }
+
+  get signer(): Address {
+    return this._call.inputValues[3].value.toAddress();
+  }
+
+  get issuedOn(): BigInt {
+    return this._call.inputValues[4].value.toBigInt();
+  }
+
+  get v(): i32 {
+    return this._call.inputValues[5].value.toI32();
+  }
+
+  get r(): Bytes {
+    return this._call.inputValues[6].value.toBytes();
+  }
+
+  get s(): Bytes {
+    return this._call.inputValues[7].value.toBytes();
+  }
+}
+
+export class RegisterAttestationCall__Outputs {
+  _call: RegisterAttestationCall;
+
+  constructor(call: RegisterAttestationCall) {
+    this._call = call;
+  }
+}
+
+export class RegisterAttestationAsIssuerCall extends ethereum.Call {
+  get inputs(): RegisterAttestationAsIssuerCall__Inputs {
+    return new RegisterAttestationAsIssuerCall__Inputs(this);
+  }
+
+  get outputs(): RegisterAttestationAsIssuerCall__Outputs {
+    return new RegisterAttestationAsIssuerCall__Outputs(this);
+  }
+}
+
+export class RegisterAttestationAsIssuerCall__Inputs {
+  _call: RegisterAttestationAsIssuerCall;
+
+  constructor(call: RegisterAttestationAsIssuerCall) {
+    this._call = call;
+  }
+
+  get identifier(): Bytes {
+    return this._call.inputValues[0].value.toBytes();
+  }
+
+  get account(): Address {
+    return this._call.inputValues[1].value.toAddress();
+  }
+
+  get issuedOn(): BigInt {
+    return this._call.inputValues[2].value.toBigInt();
+  }
+}
+
+export class RegisterAttestationAsIssuerCall__Outputs {
+  _call: RegisterAttestationAsIssuerCall;
+
+  constructor(call: RegisterAttestationAsIssuerCall) {
     this._call = call;
   }
 }
@@ -1668,20 +957,20 @@ export class RenounceOwnershipCall__Outputs {
   }
 }
 
-export class RequestCall extends ethereum.Call {
-  get inputs(): RequestCall__Inputs {
-    return new RequestCall__Inputs(this);
+export class RevokeAttestationCall extends ethereum.Call {
+  get inputs(): RevokeAttestationCall__Inputs {
+    return new RevokeAttestationCall__Inputs(this);
   }
 
-  get outputs(): RequestCall__Outputs {
-    return new RequestCall__Outputs(this);
+  get outputs(): RevokeAttestationCall__Outputs {
+    return new RevokeAttestationCall__Outputs(this);
   }
 }
 
-export class RequestCall__Inputs {
-  _call: RequestCall;
+export class RevokeAttestationCall__Inputs {
+  _call: RevokeAttestationCall;
 
-  constructor(call: RequestCall) {
+  constructor(call: RevokeAttestationCall) {
     this._call = call;
   }
 
@@ -1689,237 +978,19 @@ export class RequestCall__Inputs {
     return this._call.inputValues[0].value.toBytes();
   }
 
-  get attestationsRequested(): BigInt {
-    return this._call.inputValues[1].value.toBigInt();
+  get issuer(): Address {
+    return this._call.inputValues[1].value.toAddress();
   }
 
-  get attestationRequestFeeToken(): Address {
+  get account(): Address {
     return this._call.inputValues[2].value.toAddress();
   }
 }
 
-export class RequestCall__Outputs {
-  _call: RequestCall;
+export class RevokeAttestationCall__Outputs {
+  _call: RevokeAttestationCall;
 
-  constructor(call: RequestCall) {
-    this._call = call;
-  }
-}
-
-export class RevokeCall extends ethereum.Call {
-  get inputs(): RevokeCall__Inputs {
-    return new RevokeCall__Inputs(this);
-  }
-
-  get outputs(): RevokeCall__Outputs {
-    return new RevokeCall__Outputs(this);
-  }
-}
-
-export class RevokeCall__Inputs {
-  _call: RevokeCall;
-
-  constructor(call: RevokeCall) {
-    this._call = call;
-  }
-
-  get identifier(): Bytes {
-    return this._call.inputValues[0].value.toBytes();
-  }
-
-  get index(): BigInt {
-    return this._call.inputValues[1].value.toBigInt();
-  }
-}
-
-export class RevokeCall__Outputs {
-  _call: RevokeCall;
-
-  constructor(call: RevokeCall) {
-    this._call = call;
-  }
-}
-
-export class SelectIssuersCall extends ethereum.Call {
-  get inputs(): SelectIssuersCall__Inputs {
-    return new SelectIssuersCall__Inputs(this);
-  }
-
-  get outputs(): SelectIssuersCall__Outputs {
-    return new SelectIssuersCall__Outputs(this);
-  }
-}
-
-export class SelectIssuersCall__Inputs {
-  _call: SelectIssuersCall;
-
-  constructor(call: SelectIssuersCall) {
-    this._call = call;
-  }
-
-  get identifier(): Bytes {
-    return this._call.inputValues[0].value.toBytes();
-  }
-}
-
-export class SelectIssuersCall__Outputs {
-  _call: SelectIssuersCall;
-
-  constructor(call: SelectIssuersCall) {
-    this._call = call;
-  }
-}
-
-export class SetAttestationExpiryBlocksCall extends ethereum.Call {
-  get inputs(): SetAttestationExpiryBlocksCall__Inputs {
-    return new SetAttestationExpiryBlocksCall__Inputs(this);
-  }
-
-  get outputs(): SetAttestationExpiryBlocksCall__Outputs {
-    return new SetAttestationExpiryBlocksCall__Outputs(this);
-  }
-}
-
-export class SetAttestationExpiryBlocksCall__Inputs {
-  _call: SetAttestationExpiryBlocksCall;
-
-  constructor(call: SetAttestationExpiryBlocksCall) {
-    this._call = call;
-  }
-
-  get _attestationExpiryBlocks(): BigInt {
-    return this._call.inputValues[0].value.toBigInt();
-  }
-}
-
-export class SetAttestationExpiryBlocksCall__Outputs {
-  _call: SetAttestationExpiryBlocksCall;
-
-  constructor(call: SetAttestationExpiryBlocksCall) {
-    this._call = call;
-  }
-}
-
-export class SetAttestationRequestFeeCall extends ethereum.Call {
-  get inputs(): SetAttestationRequestFeeCall__Inputs {
-    return new SetAttestationRequestFeeCall__Inputs(this);
-  }
-
-  get outputs(): SetAttestationRequestFeeCall__Outputs {
-    return new SetAttestationRequestFeeCall__Outputs(this);
-  }
-}
-
-export class SetAttestationRequestFeeCall__Inputs {
-  _call: SetAttestationRequestFeeCall;
-
-  constructor(call: SetAttestationRequestFeeCall) {
-    this._call = call;
-  }
-
-  get token(): Address {
-    return this._call.inputValues[0].value.toAddress();
-  }
-
-  get fee(): BigInt {
-    return this._call.inputValues[1].value.toBigInt();
-  }
-}
-
-export class SetAttestationRequestFeeCall__Outputs {
-  _call: SetAttestationRequestFeeCall;
-
-  constructor(call: SetAttestationRequestFeeCall) {
-    this._call = call;
-  }
-}
-
-export class SetMaxAttestationsCall extends ethereum.Call {
-  get inputs(): SetMaxAttestationsCall__Inputs {
-    return new SetMaxAttestationsCall__Inputs(this);
-  }
-
-  get outputs(): SetMaxAttestationsCall__Outputs {
-    return new SetMaxAttestationsCall__Outputs(this);
-  }
-}
-
-export class SetMaxAttestationsCall__Inputs {
-  _call: SetMaxAttestationsCall;
-
-  constructor(call: SetMaxAttestationsCall) {
-    this._call = call;
-  }
-
-  get _maxAttestations(): BigInt {
-    return this._call.inputValues[0].value.toBigInt();
-  }
-}
-
-export class SetMaxAttestationsCall__Outputs {
-  _call: SetMaxAttestationsCall;
-
-  constructor(call: SetMaxAttestationsCall) {
-    this._call = call;
-  }
-}
-
-export class SetRegistryCall extends ethereum.Call {
-  get inputs(): SetRegistryCall__Inputs {
-    return new SetRegistryCall__Inputs(this);
-  }
-
-  get outputs(): SetRegistryCall__Outputs {
-    return new SetRegistryCall__Outputs(this);
-  }
-}
-
-export class SetRegistryCall__Inputs {
-  _call: SetRegistryCall;
-
-  constructor(call: SetRegistryCall) {
-    this._call = call;
-  }
-
-  get registryAddress(): Address {
-    return this._call.inputValues[0].value.toAddress();
-  }
-}
-
-export class SetRegistryCall__Outputs {
-  _call: SetRegistryCall;
-
-  constructor(call: SetRegistryCall) {
-    this._call = call;
-  }
-}
-
-export class SetSelectIssuersWaitBlocksCall extends ethereum.Call {
-  get inputs(): SetSelectIssuersWaitBlocksCall__Inputs {
-    return new SetSelectIssuersWaitBlocksCall__Inputs(this);
-  }
-
-  get outputs(): SetSelectIssuersWaitBlocksCall__Outputs {
-    return new SetSelectIssuersWaitBlocksCall__Outputs(this);
-  }
-}
-
-export class SetSelectIssuersWaitBlocksCall__Inputs {
-  _call: SetSelectIssuersWaitBlocksCall;
-
-  constructor(call: SetSelectIssuersWaitBlocksCall) {
-    this._call = call;
-  }
-
-  get _selectIssuersWaitBlocks(): BigInt {
-    return this._call.inputValues[0].value.toBigInt();
-  }
-}
-
-export class SetSelectIssuersWaitBlocksCall__Outputs {
-  _call: SetSelectIssuersWaitBlocksCall;
-
-  constructor(call: SetSelectIssuersWaitBlocksCall) {
+  constructor(call: RevokeAttestationCall) {
     this._call = call;
   }
 }
@@ -1950,36 +1021,6 @@ export class TransferOwnershipCall__Outputs {
   _call: TransferOwnershipCall;
 
   constructor(call: TransferOwnershipCall) {
-    this._call = call;
-  }
-}
-
-export class WithdrawCall extends ethereum.Call {
-  get inputs(): WithdrawCall__Inputs {
-    return new WithdrawCall__Inputs(this);
-  }
-
-  get outputs(): WithdrawCall__Outputs {
-    return new WithdrawCall__Outputs(this);
-  }
-}
-
-export class WithdrawCall__Inputs {
-  _call: WithdrawCall;
-
-  constructor(call: WithdrawCall) {
-    this._call = call;
-  }
-
-  get token(): Address {
-    return this._call.inputValues[0].value.toAddress();
-  }
-}
-
-export class WithdrawCall__Outputs {
-  _call: WithdrawCall;
-
-  constructor(call: WithdrawCall) {
     this._call = call;
   }
 }

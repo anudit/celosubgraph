@@ -1,17 +1,33 @@
-import { BigInt } from "@graphprotocol/graph-ts"
-import { AttestationCompleted } from "../generated/Attestations/Attestations"
-import { AttestationsCompleted } from "../generated/schema"
+import { AttestationRegistered, AttestationRevoked } from "../generated/Attestations/Attestations"
+import { Attestation } from "../generated/schema"
 
-export function handleAttestationCompleted(event: AttestationCompleted): void {
+export function handleAttestationRegistered(event: AttestationRegistered): void {
 
-  let entity = AttestationsCompleted.load(event.params.account.toHexString())
+  let entity = Attestation.load(event.params.identifier.toHexString())
 
   if (!entity) {
-    entity = new AttestationsCompleted(event.params.account.toHexString())
-    entity.count = BigInt.fromI32(0);
+    entity = new Attestation(event.params.identifier.toHexString())
   }
 
-  entity.count = entity.count.plus(BigInt.fromI32(1));
+  entity.txnHash = event.transaction.hash;
+  entity.account = event.params.account;
+  entity.identifier = event.params.identifier;
+  entity.issuer = event.params.issuer;
+  entity.signer = event.params.signer;
+  entity.issuedOn = event.params.issuedOn;
+  entity.publishedOn = event.params.publishedOn;
+  entity.isRevoked = false;
   entity.save();
+
+}
+
+export function handleAttestationRevoked(event: AttestationRevoked): void {
+
+  let entity = Attestation.load(event.params.identifier.toHexString())
+
+  if (entity) {
+    entity.isRevoked = true;
+    entity.save();
+  }
 
 }
