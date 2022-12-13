@@ -11,9 +11,16 @@ Queries (HTTP):     https://api.thegraph.com/subgraphs/name/anudit/celo-subgraph
 Example,
 ```graphql
 {
-	attestations(where: {id: "0x0002b30adf86bff6536b70874091994528b066b3"}) {
-        id
-        count
-    }
+  attestations(where: {account: "0x05b7f7c225b7caf9db746ff88ceeac409d18693c"}) {
+    id
+    identifier
+    issuer
+    account
+    signer
+    issuedOn
+    publishedOn
+    txnHash
+    isRevoked
+  }
 }
 ```
